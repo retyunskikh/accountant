@@ -1,0 +1,68 @@
+# Unity специфические файлы
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+UserSettings/
+Logs/
+MemoryCaptures/
+
+# Rider
+.idea/
+*.sln
+*.csproj
+*.unityproj
+*.pidb
+*.user
+*.suo
+*.userprefs
+
+# VSCode
+.vscode/
+
+# OS/Editor специфичные файлы
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Unity шейдер кеши
+*.shadercache
+
+# Игровые сборки
+*.apk
+*.aab
+*.xcodeproj
+*.xcworkspace
+*.ipa
+*.exe
+
+# Юнити Collaborate
+.collabignore
+
+# Addressable Assets
+Assets/AddressableAssetsData/*/*.bin*
+Assets/AddressableAssetsData/*/*.bundle*
+Assets/AddressableAssetsData/*/*.json
+Assets/AddressableAssetsData/*/*.hash
+Assets/AddressableAssetsData/*/WebGL/*
+
+# Crash Reports
+Crashes/
+
+# Analytics
+Analytics/
+
+# Plastic SCM (если используется)
+.plastic/
+ignore.conf
+hidden_changes.conf
+
+# JetBrains Rider специфичные кэш-файлы
+.idea/
+*.sln.iml
+
+# Unity generated meta files (если вдруг не нужно никак экспортировать)
+# *.meta
