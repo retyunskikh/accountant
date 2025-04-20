@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Projects\\accountant\\src\\accountant\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\accountant\\assets\\scripts\\mathstripespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mathstripespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\accountant\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\accountant\\assets\\scripts\\orientationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\accountant\\assets\\scripts\\orientationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\orientationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,6 +35,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MathStripeSpawner.cs",
+              "DocumentMoniker": "C:\\Projects\\accountant\\src\\accountant\\Assets\\Scripts\\MathStripeSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MathStripeSpawner.cs",
+              "ToolTip": "C:\\Projects\\accountant\\src\\accountant\\Assets\\Scripts\\MathStripeSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MathStripeSpawner.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAowDwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T09:21:17.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\accountant\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
@@ -43,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "OrientationManager.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\accountant\\Assets\\Scripts\\OrientationManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\OrientationManager.cs",
@@ -51,12 +68,11 @@
               "RelativeToolTip": "Assets\\Scripts\\OrientationManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T08:33:40.788Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T08:33:40.788Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "test.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\accountant\\Assets\\Scripts\\test.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\test.cs",
@@ -68,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CameraResizer.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\accountant\\Assets\\Scripts\\CameraResizer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraResizer.cs",
@@ -76,8 +92,7 @@
               "RelativeToolTip": "Assets\\Scripts\\CameraResizer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T20:15:38.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T20:15:38.027Z"
             }
           ]
         }
