@@ -66,3 +66,6 @@ hidden_changes.conf
 
 # Unity generated meta files (если вдруг не нужно никак экспортировать)
 # *.meta
+
+*TextMesh Pro*
+*.vsidx
