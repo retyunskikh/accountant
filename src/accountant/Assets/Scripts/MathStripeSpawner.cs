@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Linq.Expressions;
 
 public class MathStripeSpawner : MonoBehaviour
 {
@@ -44,21 +43,33 @@ public class MathStripeSpawner : MonoBehaviour
         rt.sizeDelta = new Vector2(width, height);
         rt.anchoredPosition = new Vector2(centerPos.x - canvas.pixelRect.width / 2, centerPos.y - canvas.pixelRect.height / 2);
 
-        // Математическая формула
-        TMP_Text label = stripe.GetComponentInChildren<TMP_Text>();
-        label.text = RandomMathExpression(expressionType);
+        int value = GetRandomValue(expressionType);
+
+        var spawnedObject = stripe.GetComponent<SpawnedObject>();
+        spawnedObject.value = value;
+        spawnedObject.ExpressionType = expressionType;
+
+        var label = stripe.GetComponentInChildren<TMP_Text>();
+        if (expressionType == ExpressionTypes.Addition)
+        {
+            label.text = $"+ {value}";
+        }
+        else
+        {
+            label.text = $"* {value}";
+        }
 
         // Запуск движения вниз
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
     }
 
-    string RandomMathExpression(ExpressionTypes expressionType)
+    int GetRandomValue(ExpressionTypes expressionType)
     {
         int a = Random.Range(1, 10);
         if (expressionType == ExpressionTypes.Addition)
-            return $"+ {a*10+ Random.Range(1, 10)}";
+            return a * 10 + Random.Range(1, 10);
         else
-            return $"× {a}";
+            return a;
     }
 }
 

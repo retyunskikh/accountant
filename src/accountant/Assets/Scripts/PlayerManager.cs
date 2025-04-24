@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public Vector2 leftPos;
     public Vector2 rightPos;
@@ -9,11 +10,28 @@ public class PlayerController : MonoBehaviour
     public bool isPortrait = Screen.width <= Screen.height;
     private bool isMoving = false;
     public float moveDuration = 0.5f; // Время на весь переход
+    public int mass = 1; // масса игрока
+
+    public void SetValue(SpawnedObject spawnedObject)
+    {
+        if (spawnedObject.ExpressionType == ExpressionTypes.Addition)
+        {
+            mass += spawnedObject.value;
+        }
+        else
+        {
+            mass *= spawnedObject.value;
+        }
+
+        var testTransform = transform.Find("PlayerMass");
+        var textComponent = testTransform.GetComponent<TMP_Text>();
+        textComponent.text = mass.ToString();
+    }
 
     void Start()
     {
         SetDefaultPosition();
-    }     
+    }
 
     void SetDefaultPosition()
     {
