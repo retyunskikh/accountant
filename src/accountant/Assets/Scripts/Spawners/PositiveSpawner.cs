@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class MathStripeSpawner : MonoBehaviour
+public class PositiveSpawner : MonoBehaviour
 {
     public GameObject stripePrefab; // Префаб полоски с надписью
     public Canvas canvas;           // Ваш Canvas для UI объектов
 
     private float spawnInterval = 2f;
-    private float moveDuration = 5f;
+    private float moveDuration = 3f;
 
     void Start()
     {
@@ -70,37 +70,5 @@ public class MathStripeSpawner : MonoBehaviour
             return a * 10 + Random.Range(1, 10);
         else
             return a;
-    }
-}
-
-// Скрипт для движения полоски вниз и уничтожения по завершении
-public class MoveAndDestroy : MonoBehaviour
-{
-    private float duration;
-    private float deltaY;
-    private RectTransform rectTransform;
-    private float elapsed = 0f;
-
-    public void Init(float duration, float deltaY)
-    {
-        this.duration = duration;
-        this.deltaY = deltaY;
-        rectTransform = GetComponent<RectTransform>();
-    }
-
-    void Update()
-    {
-        if (rectTransform == null) return;
-
-        elapsed += Time.deltaTime;
-        float t = elapsed / duration;
-        if (t < 1f)
-        {
-            rectTransform.anchoredPosition += new Vector2(0, deltaY * Time.deltaTime / duration);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }

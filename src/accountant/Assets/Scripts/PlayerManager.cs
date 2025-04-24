@@ -18,9 +18,13 @@ public class PlayerManager : MonoBehaviour
         {
             mass += spawnedObject.value;
         }
-        else
+        if (spawnedObject.ExpressionType == ExpressionTypes.Multiplication)
         {
             mass *= spawnedObject.value;
+        }
+        if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
+        {
+            mass -= spawnedObject.value;
         }
 
         var testTransform = transform.Find("PlayerMass");

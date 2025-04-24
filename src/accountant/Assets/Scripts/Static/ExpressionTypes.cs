@@ -8,8 +8,13 @@ public enum ExpressionTypes
 	/// </summary>
 	Addition = 1,
 
-	/// <summary>
-	/// Умножение
-	/// </summary>
-	Multiplication = 2,
+    /// <summary>
+    /// Умножение
+    /// </summary>
+    Multiplication = 2,
+
+    /// <summary>
+    /// Вычитание
+    /// </summary>
+    Subtraction = 3,
 }
