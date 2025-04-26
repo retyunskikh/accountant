@@ -1,17 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Projects\\accountant-2\\src\\accountant\\",
+  "WorkspaceRootPath": "C:\\Projects\\accountant-4\\src\\accountant\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant-2\\src\\accountant\\assets\\scripts\\orientationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\orientationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant-4\\src\\accountant\\assets\\scripts\\spawners\\positivespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawners\\positivespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant-2\\src\\accountant\\assets\\scripts\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant-2\\src\\accountant\\assets\\scripts\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|c:\\projects\\accountant-4\\src\\accountant\\assets\\scripts\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB8048C9-7DCC-F95F-CB6B-6E950B7CB048}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -27,40 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OrientationManager.cs",
-              "DocumentMoniker": "C:\\Projects\\accountant-2\\src\\accountant\\Assets\\Scripts\\OrientationManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\OrientationManager.cs",
-              "ToolTip": "C:\\Projects\\accountant-2\\src\\accountant\\Assets\\Scripts\\OrientationManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\OrientationManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAXAAAAAAAAAA==",
+              "Title": "PositiveSpawner.cs",
+              "DocumentMoniker": "C:\\Projects\\accountant-4\\src\\accountant\\Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "ToolTip": "C:\\Projects\\accountant-4\\src\\accountant\\Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDMAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T06:41:10.213Z",
+              "WhenOpened": "2025-04-26T07:21:30.795Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Collision.cs",
-              "DocumentMoniker": "C:\\Projects\\accountant-2\\src\\accountant\\Assets\\Scripts\\Collision.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Collision.cs",
-              "ToolTip": "C:\\Projects\\accountant-2\\src\\accountant\\Assets\\Scripts\\Collision.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Collision.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T06:37:34.761Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "PlayerManager.cs",
-              "DocumentMoniker": "C:\\Projects\\accountant-2\\src\\accountant\\Assets\\Scripts\\PlayerManager.cs",
+              "DocumentMoniker": "C:\\Projects\\accountant-4\\src\\accountant\\Assets\\Scripts\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerManager.cs",
-              "ToolTip": "C:\\Projects\\accountant-2\\src\\accountant\\Assets\\Scripts\\PlayerManager.cs",
+              "ToolTip": "C:\\Projects\\accountant-4\\src\\accountant\\Assets\\Scripts\\PlayerManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwDIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T06:29:57.246Z",
+              "WhenOpened": "2025-04-26T07:19:30.131Z",
               "EditorCaption": ""
             }
           ]

@@ -39,8 +39,8 @@ public class PlayerManager : MonoBehaviour
 
     void SetDefaultPosition()
     {
-        RectTransform rectTransform = GetComponent<RectTransform>();
-        Canvas canvas = GetComponentInParent<Canvas>();
+        var rectTransform = GetComponent<RectTransform>();
+        var canvas = GetComponentInParent<Canvas>();
 
         float canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
         float xPos = canvasWidth * 0.25f;
