@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4702349988394934123}
   - component: {fileID: -7389464918242208039}
   - component: {fileID: 5032678943319854359}
-  - component: {fileID: 2431805045089500436}
   - component: {fileID: 7002520741607197870}
+  - component: {fileID: 6684914804707978180}
   m_Layer: 0
   m_Name: Subtractor
   m_TagString: Untagged
@@ -152,19 +152,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2431805045089500436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827565256444683610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9af240cec90ca2e4ea0b6c6f19bb5b31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObject: {fileID: 1827565256444683610}
 --- !u!114 &7002520741607197870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +166,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   ExpressionType: 0
+--- !u!114 &6684914804707978180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827565256444683610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af240cec90ca2e4ea0b6c6f19bb5b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObject: {fileID: 1827565256444683610}
 --- !u!1 &2018438842229050946
 GameObject:
   m_ObjectHideFlags: 0

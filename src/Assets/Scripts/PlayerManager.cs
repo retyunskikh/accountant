@@ -42,16 +42,10 @@ public class PlayerManager : MonoBehaviour
         var rectTransform = GetComponent<RectTransform>();
         var canvas = GetComponentInParent<Canvas>();
 
-        float canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
-        float xPos = canvasWidth * 0.25f;
+        //rectTransform.anchoredPosition = new Vector2(0.25f, 0.1f);
 
-        float canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
-        float yPos = canvasHeight * 0.1f;
-
-        rectTransform.anchoredPosition = new Vector2(xPos, yPos);
-
-        leftPos = new Vector2(xPos, yPos);
-        rightPos = new Vector2(canvasWidth-xPos, yPos);
+        leftPos = new Vector2(-0.25f, -0.75f);
+        rightPos = new Vector2(0.25f, -0.75f);
     }
 
     void Update()
