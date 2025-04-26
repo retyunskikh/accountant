@@ -1,0 +1,1 @@
+После первой загрузки откройте сцену через File → Open Scene → Assets/MyScene.unity
