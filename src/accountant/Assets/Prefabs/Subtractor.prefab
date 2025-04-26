@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5032678943319854359}
   - component: {fileID: 2431805045089500436}
   - component: {fileID: 7002520741607197870}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Subtractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 2209416886779806858}
   - component: {fileID: 5922366908776720009}
   - component: {fileID: 482191837086000227}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

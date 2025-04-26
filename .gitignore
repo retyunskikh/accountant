@@ -64,8 +64,5 @@ hidden_changes.conf
 .idea/
 *.sln.iml
 
-# Unity generated meta files (если вдруг не нужно никак экспортировать)
-# *.meta
-
 *TextMesh Pro*
 *.vsidx
