@@ -20,18 +20,31 @@ public class Collision : MonoBehaviour
             var player = other.GetComponent<PlayerManager>();
             player.SetValue(spawnedObject);
 
-            var objProperties = spawnedObject.GetComponent<PositiveModel>();
-            var positiveObs = FindObjectsOfType<PositiveModel>();
-            if (objProperties!=null && positiveObs != null)
+            if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
             {
-                var pairObject = positiveObs
-                    .Where(x => x.PairId == objProperties.PairId)
-                    .Where(x => x.Id != objProperties.Id)
-                    .SingleOrDefault();
-
-                if (pairObject != null)
+                var audioSource = other.GetComponents<AudioSource>()[1];
+                audioSource.time = 0.5f;
+                audioSource.Play();
+            }
+            else
+            {
+                var objProperties = spawnedObject.GetComponent<PositiveModel>();
+                var positiveObs = FindObjectsOfType<PositiveModel>();
+                if (objProperties != null && positiveObs != null)
                 {
-                    StartCoroutine(FadeToTransparent(pairObject.gameObject));
+                    var audioSource = other.GetComponents<AudioSource>()[0];
+                    audioSource.time = 0.3f;
+                    audioSource.Play();
+
+                    var pairObject = positiveObs
+                        .Where(x => x.PairId == objProperties.PairId)
+                        .Where(x => x.Id != objProperties.Id)
+                        .SingleOrDefault();
+
+                    if (pairObject != null)
+                    {
+                        StartCoroutine(FadeToTransparent(pairObject.gameObject));
+                    }
                 }
             }
 

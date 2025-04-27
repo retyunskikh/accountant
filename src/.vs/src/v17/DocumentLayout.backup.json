@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\assets\\scripts\\model\\positivemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\model\\positivemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\assets\\scripts\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,11 +38,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "PositiveModel.cs",
+              "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Model\\PositiveModel.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Model\\PositiveModel.cs",
+              "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Model\\PositiveModel.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Model\\PositiveModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T14:35:31.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SubtractorSpawner.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
@@ -50,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "CameraResizer.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\CameraResizer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraResizer.cs",
@@ -62,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerManager.cs",
@@ -75,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "EnergyRingController.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\EnergyRingController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\EnergyRingController.cs",
@@ -87,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "PlayerAnimation.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Animation\\PlayerAnimation.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Animation\\PlayerAnimation.cs",
@@ -105,7 +122,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Collision.cs",
               "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Collision.cs",
               "RelativeToolTip": "Assets\\Scripts\\Collision.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAwwFAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-26T11:13:05.619Z",
               "EditorCaption": ""
