@@ -9,7 +9,7 @@ public class PlayerAnimation : MonoBehaviour
     public float radius = 0.25f;
     public float waveAmplitude = 5f;
     public float waveFrequency = 4;
-    public float waveSpeed = 20;
+    public float waveSpeed = 10;
 
     private MaterialPropertyBlock props;
     private MeshRenderer mr;

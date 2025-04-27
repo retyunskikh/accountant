@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections;
+using UnityEngine.UI;
 
 public class PositiveSpawner : MonoBehaviour
 {
     public GameObject stripePrefab; // Префаб полоски с надписью
     public Canvas canvas;           // Ваш Canvas для UI объектов
 
-    private float spawnInterval = 2f;
-    private float moveDuration = 3f;
+    private float spawnInterval = 4f;
+    private float moveDuration = 10f;
+    public float animationDuration = 3f; // Длительность анимации
 
     void Start()
     {
@@ -61,9 +64,33 @@ public class PositiveSpawner : MonoBehaviour
 
         // Запуск движения вниз
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
+
+        StartCoroutine(SmoothRendering(spawnedObject));
     }
 
-    int GetRandomValue(ExpressionTypes expressionType)
+    IEnumerator SmoothRendering(SpawnedObject spawnedObject)
+    {
+        var image = spawnedObject.GetComponent<Image>();
+
+        float elapsed = 0f;
+        Color c = image.color;
+        c.a = 0f;
+        image.color = c;
+
+        while (elapsed < animationDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsed / animationDuration); // от 0 до 1
+            c.a = alpha;
+            image.color = c;
+            yield return null;
+        }
+
+        c.a = 1f; // Обеспечим полную непрозрачность в конце
+        image.color = c;
+    }
+
+    private int GetRandomValue(ExpressionTypes expressionType)
     {
         int a = Random.Range(1, 10);
         if (expressionType == ExpressionTypes.Addition)

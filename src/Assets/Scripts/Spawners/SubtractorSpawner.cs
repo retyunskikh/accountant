@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections;
+using UnityEngine.UI;
 
 public class SubtractorSpawner : MonoBehaviour
 {
@@ -7,12 +9,13 @@ public class SubtractorSpawner : MonoBehaviour
     public Canvas canvas;           // Ваш Canvas для UI объектов
     public int mass = 1;
 
-    private float spawnInterval = 2f;
-    private float moveDuration = 3f;
+    private float spawnInterval = 4f;
+    private float moveDuration = 10f;
+    public float animationDuration = 3f; // Длительность анимации
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnStripes), 3f, spawnInterval);
+        InvokeRepeating(nameof(SpawnStripes), 6f, spawnInterval);
     }
 
     void SpawnStripes()
@@ -49,9 +52,33 @@ public class SubtractorSpawner : MonoBehaviour
 
         // Запуск движения вниз
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
+
+        StartCoroutine(SmoothRendering(stripe));
     }
 
-    int GetRandomValue()
+    IEnumerator SmoothRendering(GameObject spawnedObject)
+    {
+        var image = spawnedObject.GetComponent<Image>();
+
+        float elapsed = 0f;
+        Color c = image.color;
+        c.a = 0f;
+        image.color = c;
+
+        while (elapsed < animationDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsed / animationDuration); // от 0 до 1
+            c.a = alpha;
+            image.color = c;
+            yield return null;
+        }
+
+        c.a = 1f; // Обеспечим полную непрозрачность в конце
+        image.color = c;
+    }
+
+    private int GetRandomValue()
     {
         int a = Random.Range(1, 10);
         return a * 10 + mass + Random.Range(1, 10);
