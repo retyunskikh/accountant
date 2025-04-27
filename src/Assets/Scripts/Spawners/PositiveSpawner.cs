@@ -56,7 +56,7 @@ public class PositiveSpawner : MonoBehaviour
         }
         else
         {
-            label.text = $"* {value}";
+            label.text = $"X {value}";
         }
 
         // Запуск движения вниз
