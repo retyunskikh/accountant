@@ -28,18 +28,21 @@ public class PositiveSpawner : MonoBehaviour
 
         int expressionRand = Random.Range(0, 1);
 
+        var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
+
         // Левая половина
         Vector2 leftPos = new Vector2(screenW * 0.25f, y);
-        CreateStripe(leftPos, stripeWidth, stripeHeight, expressionRand==0? ExpressionTypes.Addition: ExpressionTypes.Multiplication);
+        CreateStripe(leftPos, stripeWidth, stripeHeight, expressionRand==0? ExpressionTypes.Addition: ExpressionTypes.Multiplication, pairId);
 
         // Правая половина
         Vector2 rightPos = new Vector2(screenW * 0.75f, y);
-        CreateStripe(rightPos, stripeWidth, stripeHeight, expressionRand == 0 ? ExpressionTypes.Multiplication : ExpressionTypes.Addition);
+        CreateStripe(rightPos, stripeWidth, stripeHeight, expressionRand == 0 ? ExpressionTypes.Multiplication : ExpressionTypes.Addition, pairId);
     }
 
-    void CreateStripe(Vector2 centerPos, float width, float height, ExpressionTypes expressionType)
+    void CreateStripe(Vector2 centerPos, float width, float height, ExpressionTypes expressionType, System.Guid pairId)
     {
         GameObject stripe = Instantiate(stripePrefab, canvas.transform);
+        
 
         // RectTransform для позиционирования
         RectTransform rt = stripe.GetComponent<RectTransform>();
@@ -64,6 +67,9 @@ public class PositiveSpawner : MonoBehaviour
 
         // Запуск движения вниз
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
+        var positiveProperties = stripe.AddComponent<PositiveModel>();
+        positiveProperties.PairId = pairId;
+        positiveProperties.Id = System.Guid.NewGuid();
 
         StartCoroutine(SmoothRendering(spawnedObject));
     }

@@ -9,8 +9,8 @@ public class PlayerManager : MonoBehaviour
     public float verticalPos = -4f;
     public bool isPortrait = Screen.width <= Screen.height;
     private bool isMoving = false;
-    public float moveDuration = 0.5f; // Время на весь переход
-    public int mass = 1; // масса игрока
+    public float moveDuration; //0.f3; // Время на весь переход
+    public int mass = 1; // Начальная масса игрока
 
     public void SetValue(SpawnedObject spawnedObject)
     {
