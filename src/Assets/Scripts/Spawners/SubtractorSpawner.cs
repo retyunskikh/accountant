@@ -2,6 +2,7 @@
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SubtractorSpawner : MonoBehaviour
 {
@@ -10,12 +11,13 @@ public class SubtractorSpawner : MonoBehaviour
     public int mass = 1;
 
     private float spawnInterval = 4f;
-    private float moveDuration = 10f;
+    private float moveDuration = 5f;
     public float animationDuration = 3f; // Длительность анимации
+    private List<GameObject> spawnedStripes = new List<GameObject>();
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnStripes), 6f, spawnInterval);
+        InvokeRepeating(nameof(SpawnStripes), 5f, spawnInterval);
     }
 
     void SpawnStripes()
@@ -27,20 +29,21 @@ public class SubtractorSpawner : MonoBehaviour
         float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
 
         // Левая половина
-        Vector2 leftPos = new Vector2(0, y);
+        var leftPos = new Vector2(0, y);
         CreateStripe(leftPos, screenW, stripeHeight);
     }
 
     void CreateStripe(Vector2 centerPos, float width, float height)
     {
-        GameObject stripe = Instantiate(stripePrefab, canvas.transform);
+        var stripe = Instantiate(stripePrefab, canvas.transform);
+        spawnedStripes.Add(stripe);
 
         // RectTransform для позиционирования
-        RectTransform rt = stripe.GetComponent<RectTransform>();
+        var rt = stripe.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(width, height);
         rt.anchoredPosition = new Vector2(centerPos.x, centerPos.y - canvas.pixelRect.height / 2);
 
-        int value = GetRandomValue();
+        int value = GetRandomValue()*100;
         mass += 10;
 
         var spawnedObject = stripe.GetComponent<SpawnedObject>();
@@ -53,7 +56,7 @@ public class SubtractorSpawner : MonoBehaviour
         // Запуск движения вниз
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
 
-        StartCoroutine(SmoothRendering(stripe));
+        CoroutineManager.Instance.StartManagedCoroutine(SmoothRendering(stripe));
     }
 
     IEnumerator SmoothRendering(GameObject spawnedObject)
@@ -61,7 +64,7 @@ public class SubtractorSpawner : MonoBehaviour
         var image = spawnedObject.GetComponent<Image>();
 
         float elapsed = 0f;
-        Color c = image.color;
+        var c = image.color;
         c.a = 0f;
         image.color = c;
 
@@ -76,6 +79,23 @@ public class SubtractorSpawner : MonoBehaviour
 
         c.a = 1f; // Обеспечим полную непрозрачность в конце
         image.color = c;
+    }
+
+    public void CancelInvokes()
+    {
+        CancelInvoke();
+
+        // Уничтожить все созданные объекты
+        foreach (var stripe in spawnedStripes)
+        {
+            if (stripe != null)
+            {
+                var image = stripe.GetComponent<Image>();
+                Destroy(image);
+                Destroy(stripe);
+            }
+        }
+        spawnedStripes.Clear();
     }
 
     private int GetRandomValue()

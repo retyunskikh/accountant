@@ -7,10 +7,6 @@ public class Collision : MonoBehaviour
 {
     public GameObject gameObject;
 
-    void Start()
-    {
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         // Если столкнулся с нужным объектом (например, с тегом "Player"), уничтожь себя
@@ -18,37 +14,39 @@ public class Collision : MonoBehaviour
         {
             var spawnedObject = gameObject.GetComponent<SpawnedObject>();
             var player = other.GetComponent<PlayerManager>();
-            player.SetValue(spawnedObject);
-
-            if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
+            var stopGame = player.SetValue(spawnedObject);
+            if (!stopGame)
             {
-                var audioSource = other.GetComponents<AudioSource>()[1];
-                audioSource.time = 0.5f;
-                audioSource.Play();
-            }
-            else
-            {
-                var objProperties = spawnedObject.GetComponent<PositiveModel>();
-                var positiveObs = FindObjectsOfType<PositiveModel>();
-                if (objProperties != null && positiveObs != null)
+                if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
                 {
-                    var audioSource = other.GetComponents<AudioSource>()[0];
-                    audioSource.time = 0.3f;
+                    var audioSource = other.GetComponents<AudioSource>()[1];
+                    audioSource.time = 0.5f;
                     audioSource.Play();
-
-                    var pairObject = positiveObs
-                        .Where(x => x.PairId == objProperties.PairId)
-                        .Where(x => x.Id != objProperties.Id)
-                        .SingleOrDefault();
-
-                    if (pairObject != null)
+                }
+                else
+                {
+                    var objProperties = spawnedObject.GetComponent<PositiveModel>();
+                    var positiveObs = FindObjectsOfType<PositiveModel>();
+                    if (objProperties != null && positiveObs != null)
                     {
-                        StartCoroutine(FadeToTransparent(pairObject.gameObject));
+                        var audioSource = other.GetComponents<AudioSource>()[0];
+                        audioSource.time = 0.3f;
+                        audioSource.Play();
+
+                        var pairObject = positiveObs
+                            .Where(x => x.PairId == objProperties.PairId)
+                            .Where(x => x.Id != objProperties.Id)
+                            .SingleOrDefault();
+
+                        if (pairObject != null)
+                        {
+                            CoroutineManager.Instance.StartManagedCoroutine(FadeToTransparent(pairObject.gameObject));
+                        }
                     }
                 }
-            }
 
-            StartCoroutine(FadeToGray(spawnedObject.gameObject));
+                CoroutineManager.Instance.StartManagedCoroutine(FadeToGray(spawnedObject.gameObject));
+            }
         }
     }
 

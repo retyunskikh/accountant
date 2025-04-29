@@ -2,15 +2,17 @@
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PositiveSpawner : MonoBehaviour
 {
     public GameObject stripePrefab; // Префаб полоски с надписью
     public Canvas canvas;           // Ваш Canvas для UI объектов
 
-    private float spawnInterval = 4f;
-    private float moveDuration = 10f;
+    private float spawnInterval = 2f;
+    private float moveDuration = 5f;
     public float animationDuration = 3f; // Длительность анимации
+    private List<GameObject> spawnedStripes = new List<GameObject>();
 
     void Start()
     {
@@ -42,7 +44,7 @@ public class PositiveSpawner : MonoBehaviour
     void CreateStripe(Vector2 centerPos, float width, float height, ExpressionTypes expressionType, System.Guid pairId)
     {
         GameObject stripe = Instantiate(stripePrefab, canvas.transform);
-        
+        spawnedStripes.Add(stripe);
 
         // RectTransform для позиционирования
         RectTransform rt = stripe.GetComponent<RectTransform>();
@@ -71,7 +73,7 @@ public class PositiveSpawner : MonoBehaviour
         positiveProperties.PairId = pairId;
         positiveProperties.Id = System.Guid.NewGuid();
 
-        StartCoroutine(SmoothRendering(spawnedObject));
+        CoroutineManager.Instance.StartManagedCoroutine(SmoothRendering(spawnedObject));
     }
 
     IEnumerator SmoothRendering(SpawnedObject spawnedObject)
@@ -94,6 +96,23 @@ public class PositiveSpawner : MonoBehaviour
 
         c.a = 1f; // Обеспечим полную непрозрачность в конце
         image.color = c;
+    }
+
+    public void CancelInvokes()
+    {
+        CancelInvoke(nameof(SpawnStripes));
+
+        // Уничтожить все созданные объекты
+        foreach (var stripe in spawnedStripes)
+        {
+            if (stripe != null)
+            {
+                var image = stripe.GetComponent<Image>();
+                Destroy(image);
+                Destroy(stripe);
+            }
+        }
+        spawnedStripes.Clear();
     }
 
     private int GetRandomValue(ExpressionTypes expressionType)

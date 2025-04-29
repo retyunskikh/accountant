@@ -12,7 +12,9 @@ public class PlayerManager : MonoBehaviour
     public float moveDuration; //0.f3; // Время на весь переход
     public int mass = 1; // Начальная масса игрока
 
-    public void SetValue(SpawnedObject spawnedObject)
+    private GameObject gameOverObj;
+
+    public bool SetValue(SpawnedObject spawnedObject)
     {
         if (spawnedObject.ExpressionType == ExpressionTypes.Addition)
         {
@@ -30,19 +32,22 @@ public class PlayerManager : MonoBehaviour
         var testTransform = transform.Find("PlayerMass");
         var textComponent = testTransform.GetComponent<TMP_Text>();
         textComponent.text = mass.ToString();
+
+        var gameOver = gameOverObj.GetComponent<GameOver>();
+        return gameOver.Check(mass);
     }
 
     void Start()
     {
         SetDefaultPosition();
+        gameOverObj = GameObject.Find("GameOver");
+        gameOverObj.SetActive(false);
     }
 
     void SetDefaultPosition()
     {
         var rectTransform = GetComponent<RectTransform>();
         var canvas = GetComponentInParent<Canvas>();
-
-        //rectTransform.anchoredPosition = new Vector2(0.25f, 0.1f);
 
         leftPos = new Vector2(-0.25f, -0.75f);
         rightPos = new Vector2(0.25f, -0.75f);
@@ -60,9 +65,9 @@ public class PlayerManager : MonoBehaviour
                     float mouseX = Input.mousePosition.x;
                     float middleX = Screen.width / 2;
                     if (mouseX < middleX && transform.position != (Vector3)leftPos)
-                        StartCoroutine(MoveToPosition(leftPos));
+                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(leftPos));
                     else if (mouseX >= middleX && transform.position != (Vector3)rightPos)
-                        StartCoroutine(MoveToPosition(rightPos));
+                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(rightPos));
                 }
             }
 
@@ -75,9 +80,9 @@ public class PlayerManager : MonoBehaviour
                 if (touch.phase == TouchPhase.Began)
                 {
                     if (touch.position.x < middleX && transform.position != (Vector3)leftPos)
-                        StartCoroutine(MoveToPosition(leftPos));
+                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(leftPos));
                     else if (touch.position.x >= middleX && transform.position != (Vector3)rightPos)
-                        StartCoroutine(MoveToPosition(rightPos));
+                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(rightPos));
                 }
             }
         }
