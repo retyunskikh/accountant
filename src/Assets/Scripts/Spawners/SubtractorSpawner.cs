@@ -43,7 +43,7 @@ public class SubtractorSpawner : MonoBehaviour
         rt.sizeDelta = new Vector2(width, height);
         rt.anchoredPosition = new Vector2(centerPos.x, centerPos.y - canvas.pixelRect.height / 2);
 
-        int value = GetRandomValue()*100;
+        int value = GetRandomValue();
         mass += 10;
 
         var spawnedObject = stripe.GetComponent<SpawnedObject>();

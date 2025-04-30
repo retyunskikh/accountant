@@ -454,6 +454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObject: {fileID: 146602769}
+  positiveSpawner: {fileID: 0}
+  subtractorSpawner: {fileID: 1827565256444683610, guid: 8f927bb3f2891ab449a3c873567edb37, type: 3}
 --- !u!1 &460919536
 GameObject:
   m_ObjectHideFlags: 0

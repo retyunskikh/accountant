@@ -40,15 +40,14 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         SetDefaultPosition();
+        var rectTransform = GetComponent<RectTransform>();
+        var canvas = GetComponentInParent<Canvas>();
         gameOverObj = GameObject.Find("GameOver");
         gameOverObj.SetActive(false);
     }
 
-    void SetDefaultPosition()
+    public void SetDefaultPosition()
     {
-        var rectTransform = GetComponent<RectTransform>();
-        var canvas = GetComponentInParent<Canvas>();
-
         leftPos = new Vector2(-0.25f, -0.75f);
         rightPos = new Vector2(0.25f, -0.75f);
     }
@@ -100,7 +99,10 @@ public class PlayerManager : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / moveDuration);
             // S-образная плавная функция
             float smoothT = Mathf.SmoothStep(0, 1, t);
-            transform.position = Vector2.Lerp(start, destination, smoothT);
+            if (transform!=null)
+            {
+                transform.position = Vector2.Lerp(start, destination, smoothT);
+            }
             yield return null;
         }
         transform.position = destination;

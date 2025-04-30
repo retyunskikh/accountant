@@ -1,14 +1,19 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
     public GameObject gameObject;
-    public PositiveSpawner positiveSpawner;
-    public SubtractorSpawner subtractorSpawner;
+    public bool gameOver = false;
+
+    private PlayerManager playerManager;
+    private PositiveSpawner positiveSpawner;
+    private SubtractorSpawner subtractorSpawner;
 
     void Start()
     {
+        playerManager = FindObjectOfType<PlayerManager>();
         positiveSpawner = FindObjectOfType<PositiveSpawner>();
         subtractorSpawner = FindObjectOfType<SubtractorSpawner>();
     }
@@ -17,7 +22,8 @@ public class GameOver : MonoBehaviour
     {
         if (userMass < 0)
         {
-            //gameObject.SetActive(true);
+            gameOver = true;
+            gameObject.SetActive(true);
             var textComponent = gameObject.GetComponentInChildren<TMP_Text>();
             textComponent.text = $"Ваш счёт:{Time.time * 100f}";
 
@@ -28,5 +34,31 @@ public class GameOver : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void Update()
+    {
+        if (gameOver)
+        {
+            // Проверяем клик мышью
+            if (Input.GetMouseButtonDown(0))
+            {
+                RestartGame();
+            }
+
+            // Проверяем тач (касание) отдельно, если нужно только на устройствах с тачем
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                RestartGame();
+            }
+        }
+    }
+
+    public void RestartGame()
+    {
+        playerManager.SetDefaultPosition();
+        gameOver = false;
+        gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
