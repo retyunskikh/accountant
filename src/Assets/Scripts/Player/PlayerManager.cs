@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public float verticalPos = -4f;
     public bool isPortrait = Screen.width <= Screen.height;
     private bool isMoving = false;
-    public float moveDuration; //0.f3; // Время на весь переход
+    public float moveDuration; //0.3f; // Время на весь переход
     public int mass = 1; // Начальная масса игрока
 
     private GameObject gameOverObj;
@@ -29,8 +29,9 @@ public class PlayerManager : MonoBehaviour
             mass -= spawnedObject.value;
         }
 
-        var testTransform = transform.Find("PlayerMass");
-        var textComponent = testTransform.GetComponent<TMP_Text>();
+        transform.GetComponent<PlayerScaleAndColor>().PlayAnimation(spawnedObject.ExpressionType);
+
+        var textComponent = transform.Find("PlayerMass").GetComponent<TMP_Text>();
         textComponent.text = mass.ToString();
 
         var gameOver = gameOverObj.GetComponent<GameOver>();
@@ -61,12 +62,7 @@ public class PlayerManager : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    float mouseX = Input.mousePosition.x;
-                    float middleX = Screen.width / 2;
-                    if (mouseX < middleX && transform.position != (Vector3)leftPos)
-                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(leftPos));
-                    else if (mouseX >= middleX && transform.position != (Vector3)rightPos)
-                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(rightPos));
+                    SelectPosition(Input.mousePosition.x);
                 }
             }
 
@@ -74,17 +70,21 @@ public class PlayerManager : MonoBehaviour
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 Touch touch = Input.GetTouch(0);
-                float middleX = Screen.width / 2;
-
                 if (touch.phase == TouchPhase.Began)
                 {
-                    if (touch.position.x < middleX && transform.position != (Vector3)leftPos)
-                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(leftPos));
-                    else if (touch.position.x >= middleX && transform.position != (Vector3)rightPos)
-                        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(rightPos));
+                    SelectPosition(touch.position.x);
                 }
             }
         }
+    }
+
+    private void SelectPosition(float touchXPosition)
+    {
+        float middleX = Screen.width / 2;
+        if (touchXPosition < middleX && transform.position != (Vector3)leftPos)
+            CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(leftPos));
+        else if (touchXPosition >= middleX && transform.position != (Vector3)rightPos)
+            CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(rightPos));
     }
 
     IEnumerator MoveToPosition(Vector2 destination)

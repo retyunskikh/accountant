@@ -9,10 +9,12 @@ public class PositiveSpawner : MonoBehaviour
     public GameObject stripePrefab; // Префаб полоски с надписью
     public Canvas canvas;           // Ваш Canvas для UI объектов
 
-    private float spawnInterval = 2f;
-    private float moveDuration = 5f;
-    public float animationDuration = 3f; // Длительность анимации
+    private float spawnInterval = 3f;
+    private float moveDuration = 10f;
+    public float animationDuration = 4f; // Длительность анимации
     private List<GameObject> spawnedStripes = new List<GameObject>();
+
+    int count = 0;
 
     void Start()
     {
@@ -21,24 +23,28 @@ public class PositiveSpawner : MonoBehaviour
 
     void SpawnStripes()
     {
-        float screenW = canvas.pixelRect.width;
-        float screenH = canvas.pixelRect.height;
-        float stripeWidth = screenW * 0.25f; // 25% ширины на каждую
-        float stripeHeight = 100f;
+        count++;
+        if (count == 1 || count % 3 != 1)
+        {
+            float screenW = canvas.pixelRect.width;
+            float screenH = canvas.pixelRect.height;
+            float stripeWidth = screenW * 0.25f; // 25% ширины на каждую
+            float stripeHeight = 100f;
 
-        float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
+            float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
 
-        int expressionRand = Random.Range(0, 1);
+            int expressionRand = Random.Range(0, 1);
 
-        var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
+            var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
 
-        // Левая половина
-        Vector2 leftPos = new Vector2(screenW * 0.25f, y);
-        CreateStripe(leftPos, stripeWidth, stripeHeight, expressionRand==0? ExpressionTypes.Addition: ExpressionTypes.Multiplication, pairId);
+            // Левая половина
+            Vector2 leftPos = new Vector2(screenW * 0.25f, y);
+            CreateStripe(leftPos, stripeWidth, stripeHeight, expressionRand == 0 ? ExpressionTypes.Addition : ExpressionTypes.Multiplication, pairId);
 
-        // Правая половина
-        Vector2 rightPos = new Vector2(screenW * 0.75f, y);
-        CreateStripe(rightPos, stripeWidth, stripeHeight, expressionRand == 0 ? ExpressionTypes.Multiplication : ExpressionTypes.Addition, pairId);
+            // Правая половина
+            Vector2 rightPos = new Vector2(screenW * 0.75f, y);
+            CreateStripe(rightPos, stripeWidth, stripeHeight, expressionRand == 0 ? ExpressionTypes.Multiplication : ExpressionTypes.Addition, pairId);
+        }
     }
 
     void CreateStripe(Vector2 centerPos, float width, float height, ExpressionTypes expressionType, System.Guid pairId)

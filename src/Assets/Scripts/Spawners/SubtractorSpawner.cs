@@ -10,14 +10,14 @@ public class SubtractorSpawner : MonoBehaviour
     public Canvas canvas;           // Ваш Canvas для UI объектов
     public int mass = 1;
 
-    private float spawnInterval = 4f;
-    private float moveDuration = 5f;
-    public float animationDuration = 3f; // Длительность анимации
+    private float spawnInterval = 6f;
+    private float moveDuration = 10f;
+    public float animationDuration = 4f; // Длительность анимации
     private List<GameObject> spawnedStripes = new List<GameObject>();
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnStripes), 5f, spawnInterval);
+        InvokeRepeating(nameof(SpawnStripes), 8f, spawnInterval);
     }
 
     void SpawnStripes()

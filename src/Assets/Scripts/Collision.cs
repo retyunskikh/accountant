@@ -40,19 +40,21 @@ public class Collision : MonoBehaviour
 
                         if (pairObject != null)
                         {
-                            CoroutineManager.Instance.StartManagedCoroutine(FadeToTransparent(pairObject.gameObject));
+                            CoroutineManager.Instance.StartManagedCoroutine(FadeToGray(pairObject.gameObject));
                         }
                     }
                 }
 
-                CoroutineManager.Instance.StartManagedCoroutine(FadeToGray(spawnedObject.gameObject));
+                CoroutineManager.Instance.StartManagedCoroutine(FadeToTransparent(spawnedObject.gameObject));
             }
         }
     }
 
     private IEnumerator FadeToGray(GameObject gameObject)
     {
-        var img = gameObject.GetComponent<Image>();
+        gameObject.GetComponent<Collider2D>().isTrigger = false;
+
+        Image img = gameObject.GetComponent<Image>();
 
         Color grayColor = Color.gray; // Цвет в который изменить
         Color startColor = img.color;
@@ -66,7 +68,7 @@ public class Collision : MonoBehaviour
         {
             float t = time / animationDuration;
             // Плавное смешивание цвета к серому и уменьшение альфы
-            Color lerpedColor = Color.Lerp(startColor, grayColor, t);
+            var lerpedColor = Color.Lerp(startColor, grayColor, t);
             //lerpedColor.a = Mathf.Lerp(startColor.a, 0, t);
             img.color = lerpedColor;
             time += Time.deltaTime;
@@ -75,7 +77,6 @@ public class Collision : MonoBehaviour
 
         // Устанавливаем окончательный цвет
         Color finishColor = grayColor;
-        // finishColor.a = 0;
         img.color = finishColor;
 
         // Ждем чуть-чуть, чтобы убедиться, что визуально все плавно исчезло
@@ -87,10 +88,10 @@ public class Collision : MonoBehaviour
 
     private IEnumerator FadeToTransparent(GameObject gameObject)
     {
-        gameObject.GetComponent<Collider2D>().isTrigger = false; 
-        var img = gameObject.GetComponent<Image>();
+        gameObject.GetComponent<Collider2D>().isTrigger = false;
+        Image img = gameObject.GetComponent<Image>();
 
-        Color startColor = img.color;
+        var startColor = img.color;
 
         float time = 0f;
 
@@ -111,7 +112,7 @@ public class Collision : MonoBehaviour
         finishColor.a = 0;
 
         // Ждем чуть-чуть, чтобы убедиться, что визуально все плавно исчезло
-        yield return new WaitForSeconds(animationDuration);
+        yield return new WaitForSeconds(1f);
 
         // Уничтожаем объект
         Destroy(gameObject);

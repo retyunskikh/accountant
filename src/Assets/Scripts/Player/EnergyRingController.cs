@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnergyRingController : MonoBehaviour
@@ -35,7 +33,6 @@ public class EnergyRingController : MonoBehaviour
             startColor = sr.color;
             targetColor = Random.ColorHSV(0f, 1f, 0.7f, 1f, 0.7f, 1f); // €ркие цвета
             startSize = transform.localScale.x;
-            //targetSize = Random.Range(0.7f, 1.4f); // диапазон размеров кольца
             t = 0f;
         }
     }
