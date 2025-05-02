@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System.Linq;
 
 public class SubtractorSpawner : MonoBehaviour
 {
@@ -104,10 +103,10 @@ public class SubtractorSpawner : MonoBehaviour
 
     private int GetValue()
     {
-        int a = Random.Range(2, playerManager.mass % 2);
-        var resultValue = HistoryManager.Instance.GetAddPossibleMass() - a;
+        int a = Random.Range(2, playerManager.mass % 2+1);
+        var resultValue = HistoryManager.Instance.PossibleMassGet() - a;
 
-        HistoryManager.Instance.AddHistory(new SpawnedObject(resultValue, ExpressionTypes.Subtraction));
+        HistoryManager.Instance.HistoryAdd(new SpawnedDataModel(resultValue, ExpressionTypes.Subtraction));
         HistoryManager.Instance.PossibleMassSubtraction(resultValue);
 
         return resultValue;

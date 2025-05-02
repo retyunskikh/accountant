@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PositiveModel: MonoBehaviour
+public class PositiveDataModel
 {
     public Guid Id { get; set; }
 
@@ -17,7 +17,7 @@ public class PositiveModel: MonoBehaviour
     public int MultiplicationValue;
 
 
-    public PositiveModel(Vector2 centerPos, float width, float height, ExpressionTypes expressionType, Guid pairId, int multiplicationValue)
+    public PositiveDataModel(Vector2 centerPos, float width, float height, ExpressionTypes expressionType, Guid pairId, int multiplicationValue)
     {
         CenterPos = centerPos;
         Width = width;

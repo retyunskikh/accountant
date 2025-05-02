@@ -32,8 +32,8 @@ public class Collision : MonoBehaviour
                 }
                 else
                 {
-                    var objProperties = spawnedObject.GetComponent<PositiveModel>();
-                    var positiveObs = FindObjectsOfType<PositiveModel>();
+                    var objProperties = spawnedObject.GetComponent<PositiveObject>();
+                    var positiveObs = FindObjectsOfType<PositiveObject>();
                     if (objProperties != null && positiveObs != null)
                     {
                         var audioSource = other.GetComponents<AudioSource>()[0];

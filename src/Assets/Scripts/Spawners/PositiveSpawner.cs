@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PositiveSpawner : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PositiveSpawner : MonoBehaviour
     public float animationDuration = 4f; // Длительность анимации
 
     int count = 0;
-    int multiplicationMaxValue = 4;
+    int multiplicationMaxValue = 3;
     public int lastMultiplicationValue = 1;
 
     void Start()
@@ -43,8 +44,7 @@ public class PositiveSpawner : MonoBehaviour
 
             var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
 
-            var multiplicationValue = Random.Range(2, multiplicationMaxValue); // Случайный мультипликатор
-            HistoryManager.Instance.AddHistory(new SpawnedObject(multiplicationValue, ExpressionTypes.Multiplication));
+            var multiplicationValue = Random.Range(2, multiplicationMaxValue+1); // Случайный мультипликатор
             if (multiplicationMaxValue < 10)
             {
                 if (Random.Range(0, 10)<1)
@@ -53,15 +53,15 @@ public class PositiveSpawner : MonoBehaviour
                 }
             }
 
-            var spawnedObjects = new List<SpawnedObject>();
+            var spawnedObjects = new List<SpawnedDataModel>();
 
             // Левая половина
             Vector2 leftPos = new Vector2(screenW * 0.25f, y);
-            spawnedObjects.Add(CreateStripe(new PositiveModel(leftPos, stripeWidth, stripeHeight, ExpressionTypes.Addition, pairId, multiplicationValue)));
+            spawnedObjects.Add(CreateStripe(new PositiveDataModel(leftPos, stripeWidth, stripeHeight, ExpressionTypes.Addition, pairId, multiplicationValue)));
 
             // Правая половина
             Vector2 rightPos = new Vector2(screenW * 0.75f, y);
-            spawnedObjects.Add(CreateStripe(new PositiveModel(rightPos, stripeWidth, stripeHeight, ExpressionTypes.Multiplication, pairId, multiplicationValue)));
+            spawnedObjects.Add(CreateStripe(new PositiveDataModel(rightPos, stripeWidth, stripeHeight, ExpressionTypes.Multiplication, pairId, multiplicationValue)));
 
             HistoryManager.Instance.PossibleMassAdd(spawnedObjects);
 
@@ -69,7 +69,7 @@ public class PositiveSpawner : MonoBehaviour
         }
     }
 
-    SpawnedObject CreateStripe(PositiveModel model)
+    SpawnedDataModel CreateStripe(PositiveDataModel model)
     {
         GameObject stripe = Instantiate(stripePrefab, canvas.transform);
         spawnedStripes.Add(stripe);
@@ -87,11 +87,15 @@ public class PositiveSpawner : MonoBehaviour
         {
             spawnedObject.Value = model.MultiplicationValue;
             label.text = $"X {model.MultiplicationValue}";
+
+            HistoryManager.Instance.HistoryAdd(new SpawnedDataModel(model.MultiplicationValue, ExpressionTypes.Multiplication));
         }
         else
         {
+            var lastSpawnedObj = HistoryManager.Instance.HistoryLastGet();
+
             var massAfterMultiplication = playerManager.mass;
-            if (count % 3 == 2)
+            if (lastSpawnedObj?.Value!=null && lastSpawnedObj.ExpressionType == ExpressionTypes.Subtraction)
             {
                 massAfterMultiplication -= subtractorSpawner.subtractorValue; 
             }else
@@ -99,10 +103,10 @@ public class PositiveSpawner : MonoBehaviour
                 massAfterMultiplication *= model.MultiplicationValue * lastMultiplicationValue;
             }
 
-            var growth = massAfterMultiplication - playerManager.mass;
-            var randomChange = Random.Range(1, multiplicationMaxValue);
+            var growth = massAfterMultiplication * model.MultiplicationValue - massAfterMultiplication;
+            var randomChange = Random.Range(1, multiplicationMaxValue+ playerManager.mass%3);
             var additionValue = 0;
-            if (Random.Range(0, 1) == 0)
+            if (Random.Range(0, 2) == 0)
             {
                 additionValue = growth - randomChange;
                 if (additionValue < 1) additionValue = Random.Range(1, 3);
@@ -113,16 +117,18 @@ public class PositiveSpawner : MonoBehaviour
             }
             spawnedObject.Value = additionValue;
             label.text = $"+ {additionValue}";
+
+            HistoryManager.Instance.HistoryAdd(new SpawnedDataModel(additionValue, ExpressionTypes.Addition));
         }
 
         // Запуск движения вниз
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - model.Height);
-        var positiveProperties = stripe.AddComponent<PositiveModel>();
+        var positiveProperties = stripe.AddComponent<PositiveObject>();
         positiveProperties.PairId = model.PairId;
         positiveProperties.Id = System.Guid.NewGuid();
 
         CoroutineManager.Instance.StartManagedCoroutine(SmoothRendering(spawnedObject));
-        return spawnedObject;
+        return new SpawnedDataModel(spawnedObject.Value, model.ExpressionType);
     }
 
     IEnumerator SmoothRendering(SpawnedObject spawnedObject)
@@ -163,13 +169,4 @@ public class PositiveSpawner : MonoBehaviour
         }
         spawnedStripes.Clear();
     }
-
-    //private int GetRandomValue(ExpressionTypes expressionType)
-    //{
-    //    int a = Random.Range(1, 10);
-    //    if (expressionType == ExpressionTypes.Addition)
-    //        return a * 10 + Random.Range(1, 10);
-    //    else
-    //        return a;
-    //}
 }

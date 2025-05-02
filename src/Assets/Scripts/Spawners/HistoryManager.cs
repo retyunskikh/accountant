@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class HistoryManager : MonoBehaviour
 {
-    private List<SpawnedObject> multiplications = new List<SpawnedObject>();
+    private List<SpawnedDataModel> spawnedObjects = new List<SpawnedDataModel>();
     private int possiblePlayerMass = PlayerStartMass.Value;
 
     private static HistoryManager _instance;
@@ -26,12 +26,21 @@ public class HistoryManager : MonoBehaviour
         }
     }
 
-    public void AddHistory(SpawnedObject obj)
+    public void HistoryAdd(SpawnedDataModel obj)
     {
-        multiplications.Add(obj);
+        spawnedObjects.Add(obj);
     }
 
-    public void PossibleMassAdd(List<SpawnedObject> objs)
+    public SpawnedDataModel HistoryLastGet()
+    {
+        if(spawnedObjects.Count>0)
+        {
+            return spawnedObjects.Last();
+        }
+        return null;
+    }
+
+    public void PossibleMassAdd(List<SpawnedDataModel> objs)
     {
         var valueAfterAdd = objs.Where(x => x.ExpressionType == ExpressionTypes.Addition).Single().Value + possiblePlayerMass;
         var valueAfterMultiplication = objs.Where(x => x.ExpressionType == ExpressionTypes.Multiplication).Single().Value * possiblePlayerMass;
@@ -51,14 +60,14 @@ public class HistoryManager : MonoBehaviour
         possiblePlayerMass -= value;
     }
 
-    public int GetAddPossibleMass()
+    public int PossibleMassGet()
     {
         return possiblePlayerMass;
     }
 
     public void Clear()
     {
-        multiplications = new List<SpawnedObject>();
+        spawnedObjects = new List<SpawnedDataModel>();
         possiblePlayerMass = PlayerStartMass.Value;
     }
 }
