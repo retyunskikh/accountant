@@ -98,18 +98,18 @@ public class PositiveSpawner : MonoBehaviour
         {
             var lastSpawnedObj = HistoryManager.Instance.HistoryLastGet();
 
-            var massAfterMultiplication = playerManager.mass;
+            var massAfterCollision = playerManager.mass;
             if (lastSpawnedObj?.Value != null && lastSpawnedObj.ExpressionType == ExpressionTypes.Subtraction)
             {
-                massAfterMultiplication -= subtractorSpawner.subtractorValue;
+                massAfterCollision -= subtractorSpawner.subtractorValue;
             }
             else
             {
-                massAfterMultiplication *= model.MultiplicationValue * lastMultiplicationValue;
+                massAfterCollision *= model.MultiplicationValue;
             }
 
-            var growth = massAfterMultiplication * model.MultiplicationValue - massAfterMultiplication;
-            var randomChange = Random.Range(1, multiplicationMaxValue + playerManager.mass % 3);
+            var growth = massAfterCollision * lastMultiplicationValue - massAfterCollision;
+            var randomChange = Random.Range(1, multiplicationMaxValue+1);
             var additionValue = 0;
             var rand = Random.Range(1, 3);
             if (rand == 1)

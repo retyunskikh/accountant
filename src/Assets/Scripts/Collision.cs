@@ -59,7 +59,7 @@ public class Collision : MonoBehaviour
 
             if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
             {
-                GlobalVariables.Instance.AddSpeedScale(0.1f);
+                GlobalVariables.Instance.AddSpeedScale(0.2f);
                 subtractorSpawner.Acceleration();
                 positiveSpawner.Acceleration();
             }
