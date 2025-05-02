@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +26,11 @@ public class GameOver : MonoBehaviour
             gameOver = true;
             gameObject.SetActive(true);
             var textComponent = gameObject.GetComponentInChildren<TMP_Text>();
-            textComponent.text = $"Ваш счёт:{Time.time * 100f}";
+            textComponent.text = $"УР {Math.Round((GlobalVariables.Instance.speedScale-1)*10,0).ToString()}";
+
+            var audioSource = gameObject.GetComponents<AudioSource>()[1];
+            audioSource.time = 0.5f;
+            audioSource.Play();
 
             Time.timeScale = 0f;
             CoroutineManager.Instance.StopAllManagedCoroutines();
@@ -58,7 +63,7 @@ public class GameOver : MonoBehaviour
 
     public void RestartGame()
     {
-        playerManager.SetDefaultPosition();
+        playerManager.MoveToDefaultPosition();
         gameOver = false;
         gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

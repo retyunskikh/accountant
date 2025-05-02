@@ -25,7 +25,7 @@ public class PositiveSpawner : MonoBehaviour
     void Start()
     {
         spawnInterval = spawnIntervalDefault / GlobalVariables.Instance.speedScale;
-        moveDuration = moveDurationDefault * GlobalVariables.Instance.speedScale;
+        moveDuration = moveDurationDefault / GlobalVariables.Instance.speedScale;
 
         playerManager = FindObjectOfType<PlayerManager>();
         subtractorSpawner = FindObjectOfType<SubtractorSpawner>();

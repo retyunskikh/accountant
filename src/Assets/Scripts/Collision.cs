@@ -55,13 +55,14 @@ public class Collision : MonoBehaviour
                 }
 
                 CoroutineManager.Instance.StartManagedCoroutine(FadeToTransparent(spawnedObject.gameObject));
-            }
 
-            if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
-            {
-                GlobalVariables.Instance.AddSpeedScale(0.2f);
-                subtractorSpawner.Acceleration();
-                positiveSpawner.Acceleration();
+
+                if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
+                {
+                    GlobalVariables.Instance.AddSpeedScale(0.2f);
+                    subtractorSpawner.Acceleration();
+                    positiveSpawner.Acceleration();
+                }
             }
         }
     }

@@ -6,7 +6,6 @@ public class PlayerManager : MonoBehaviour
 {
     public Vector2 leftPos;
     public Vector2 rightPos;
-    public float verticalPos = -4f;
     public bool isPortrait = Screen.width <= Screen.height;
     private bool isMoving = false;
     private float moveDuration = 0.3f; // Время на весь переход
@@ -45,19 +44,21 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        SetDefaultPosition();
         var rectTransform = GetComponent<RectTransform>();
         var canvas = GetComponentInParent<Canvas>();
         gameOverObj = GameObject.Find("GameOver");
         playFieldObj = GameObject.Find("PlayField");
         gameOverObj.SetActive(false);
         transform.Find("PlayerMass").GetComponent<TMP_Text>().text = mass.ToString();
+        MoveToDefaultPosition();
     }
 
-    public void SetDefaultPosition()
+    public void MoveToDefaultPosition()
     {
         leftPos = new Vector2(-0.25f, -0.75f);
         rightPos = new Vector2(0.25f, -0.75f);
+
+        CoroutineManager.Instance.StartManagedCoroutine(MoveToPosition(leftPos));
     }
 
     void Update()
