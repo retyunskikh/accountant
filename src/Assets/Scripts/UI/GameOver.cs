@@ -28,8 +28,8 @@ public class GameOver : MonoBehaviour
             var textComponent = gameObject.GetComponentInChildren<TMP_Text>();
             textComponent.text = $"УР {Math.Round((GlobalVariables.Instance.speedScale-1)*10,0).ToString()}";
 
-            var audioSource = gameObject.GetComponents<AudioSource>()[1];
-            audioSource.time = 0.5f;
+            var audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource.time = 0.1f;
             audioSource.Play();
 
             Time.timeScale = 0f;

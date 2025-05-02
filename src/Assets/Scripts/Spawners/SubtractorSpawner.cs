@@ -110,7 +110,7 @@ public class SubtractorSpawner : MonoBehaviour
 
     private int GetValue()
     {
-        int a = Random.Range(2, playerManager.mass % 2+1);
+        int a = Random.Range(2, playerManager.mass % 2 + 1);
         var resultValue = HistoryManager.Instance.PossibleMassGet() - a;
 
         HistoryManager.Instance.HistoryAdd(new SpawnedDataModel(resultValue, ExpressionTypes.Subtraction));
@@ -125,6 +125,6 @@ public class SubtractorSpawner : MonoBehaviour
 
         CancelInvoke(nameof(SpawnStripes));
         var delay = spawnInterval / 3;
-        InvokeRepeating(nameof(SpawnStripes), delay, spawnInterval);
+        InvokeRepeating(nameof(SpawnStripes), delay + 1, spawnInterval);
     }
 }

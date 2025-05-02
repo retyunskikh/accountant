@@ -182,6 +182,6 @@ public class PositiveSpawner : MonoBehaviour
         moveDuration = moveDurationDefault / GlobalVariables.Instance.speedScale;
 
         CancelInvoke(nameof(SpawnStripes));
-        InvokeRepeating(nameof(SpawnStripes), 0f, spawnInterval);
+        InvokeRepeating(nameof(SpawnStripes), 2f, spawnInterval);
     }
 }

@@ -99,6 +99,11 @@ public class PlayerManager : MonoBehaviour
     public IEnumerator MoveToPosition(Vector2 destination)
     {
         isMoving = true;
+
+        var audioSource = gameObject.GetComponents<AudioSource>()[2];
+        audioSource.time = 0.1f;
+        audioSource.Play();
+
         Vector2 start = transform.position;
         float elapsed = 0f;
 
