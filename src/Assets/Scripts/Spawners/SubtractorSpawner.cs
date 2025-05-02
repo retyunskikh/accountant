@@ -12,13 +12,19 @@ public class SubtractorSpawner : MonoBehaviour
 
     public int subtractorValue = 0;
 
-    private float spawnInterval = 18f;
-    private float moveDuration = 15f;
+    private float spawnIntervalDefault = 18f;
+    private float moveDurationDefault = 15f;
+    private float spawnInterval;
+    private float moveDuration;
     public float animationDuration = 4f; // Длительность анимации
+
     private List<GameObject> spawnedStripes = new List<GameObject>();
 
     void Start()
     {
+        spawnInterval = spawnIntervalDefault / GlobalVariables.Instance.speedScale;
+        moveDuration = moveDurationDefault * GlobalVariables.Instance.speedScale;
+
         playerManager = FindObjectOfType<PlayerManager>();
         InvokeRepeating(nameof(SpawnStripes), 18f, spawnInterval);
     }
@@ -60,6 +66,7 @@ public class SubtractorSpawner : MonoBehaviour
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
 
         CoroutineManager.Instance.StartManagedCoroutine(SmoothRendering(stripe));
+
     }
 
     IEnumerator SmoothRendering(GameObject spawnedObject)
@@ -110,5 +117,14 @@ public class SubtractorSpawner : MonoBehaviour
         HistoryManager.Instance.PossibleMassSubtraction(resultValue);
 
         return resultValue;
+    }
+    public void Acceleration()
+    {
+        spawnInterval = spawnIntervalDefault / GlobalVariables.Instance.speedScale;
+        moveDuration = moveDurationDefault / GlobalVariables.Instance.speedScale;
+
+        CancelInvoke(nameof(SpawnStripes));
+        var delay = spawnInterval / 3;
+        InvokeRepeating(nameof(SpawnStripes), delay, spawnInterval);
     }
 }

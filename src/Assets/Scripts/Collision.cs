@@ -7,10 +7,12 @@ public class Collision : MonoBehaviour
 {
     public GameObject gameObject;
     private SubtractorSpawner subtractorSpawner;
+    private PositiveSpawner positiveSpawner;
 
     void Start()
     {
         subtractorSpawner = FindObjectOfType<SubtractorSpawner>();
+        positiveSpawner = FindObjectOfType<PositiveSpawner>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -53,6 +55,13 @@ public class Collision : MonoBehaviour
                 }
 
                 CoroutineManager.Instance.StartManagedCoroutine(FadeToTransparent(spawnedObject.gameObject));
+            }
+
+            if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
+            {
+                GlobalVariables.Instance.AddSpeedScale(0.1f);
+                subtractorSpawner.Acceleration();
+                positiveSpawner.Acceleration();
             }
         }
     }

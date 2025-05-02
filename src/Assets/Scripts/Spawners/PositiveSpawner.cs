@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System.Linq;
 
 public class PositiveSpawner : MonoBehaviour
 {
@@ -13,24 +12,31 @@ public class PositiveSpawner : MonoBehaviour
     private List<GameObject> spawnedStripes = new List<GameObject>();
     private SubtractorSpawner subtractorSpawner;
 
-    private float spawnInterval = 6f;
-    private float moveDuration = 15f;
+    private float spawnIntervalDefault = 6;
+    private float moveDurationDefault = 15;
+    private float spawnInterval = 0;
+    private float moveDuration = 0;
     public float animationDuration = 4f; // Длительность анимации
 
     int count = 0;
-    int multiplicationMaxValue = 3;
+    int multiplicationMaxValue = 2;
     public int lastMultiplicationValue = 1;
 
     void Start()
     {
+        spawnInterval = spawnIntervalDefault / GlobalVariables.Instance.speedScale;
+        moveDuration = moveDurationDefault * GlobalVariables.Instance.speedScale;
+
         playerManager = FindObjectOfType<PlayerManager>();
         subtractorSpawner = FindObjectOfType<SubtractorSpawner>();
+
         InvokeRepeating(nameof(SpawnStripes), 0f, spawnInterval);
     }
 
     void SpawnStripes()
     {
         count++;
+        var t = count % 3;
         if (count == 1 || count % 3 != 1)
         {
             float screenW = canvas.pixelRect.width;
@@ -40,14 +46,12 @@ public class PositiveSpawner : MonoBehaviour
 
             float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
 
-            //var expressionRand = Random.Range(0, 1);
-
             var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
 
-            var multiplicationValue = Random.Range(2, multiplicationMaxValue+1); // Случайный мультипликатор
+            var multiplicationValue = Random.Range(2, multiplicationMaxValue + 1); // Случайный мультипликатор
             if (multiplicationMaxValue < 10)
             {
-                if (Random.Range(0, 10)<1)
+                if (Random.Range(0, 10) < 1)
                 {
                     multiplicationMaxValue++; // Постепенно повышаем верхнюю границу случайного мультипликатора
                 }
@@ -95,21 +99,23 @@ public class PositiveSpawner : MonoBehaviour
             var lastSpawnedObj = HistoryManager.Instance.HistoryLastGet();
 
             var massAfterMultiplication = playerManager.mass;
-            if (lastSpawnedObj?.Value!=null && lastSpawnedObj.ExpressionType == ExpressionTypes.Subtraction)
+            if (lastSpawnedObj?.Value != null && lastSpawnedObj.ExpressionType == ExpressionTypes.Subtraction)
             {
-                massAfterMultiplication -= subtractorSpawner.subtractorValue; 
-            }else
+                massAfterMultiplication -= subtractorSpawner.subtractorValue;
+            }
+            else
             {
                 massAfterMultiplication *= model.MultiplicationValue * lastMultiplicationValue;
             }
 
             var growth = massAfterMultiplication * model.MultiplicationValue - massAfterMultiplication;
-            var randomChange = Random.Range(1, multiplicationMaxValue+ playerManager.mass%3);
+            var randomChange = Random.Range(1, multiplicationMaxValue + playerManager.mass % 3);
             var additionValue = 0;
-            if (Random.Range(0, 2) == 0)
+            var rand = Random.Range(1, 3);
+            if (rand == 1)
             {
                 additionValue = growth - randomChange;
-                if (additionValue < 1) additionValue = Random.Range(1, 3);
+                if (additionValue < 1) additionValue = 1;
             }
             else
             {
@@ -168,5 +174,14 @@ public class PositiveSpawner : MonoBehaviour
             }
         }
         spawnedStripes.Clear();
+    }
+
+    public void Acceleration()
+    {
+        spawnInterval = spawnIntervalDefault / GlobalVariables.Instance.speedScale;
+        moveDuration = moveDurationDefault / GlobalVariables.Instance.speedScale;
+
+        CancelInvoke(nameof(SpawnStripes));
+        InvokeRepeating(nameof(SpawnStripes), 0f, spawnInterval);
     }
 }
