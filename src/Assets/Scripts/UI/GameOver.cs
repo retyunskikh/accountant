@@ -29,6 +29,7 @@ public class GameOver : MonoBehaviour
 
             Time.timeScale = 0f;
             CoroutineManager.Instance.StopAllManagedCoroutines();
+            HistoryManager.Instance.Clear();
             positiveSpawner.CancelInvokes();
             subtractorSpawner.CancelInvokes();
             return true;

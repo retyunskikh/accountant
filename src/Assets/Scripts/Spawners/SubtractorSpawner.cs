@@ -3,21 +3,25 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SubtractorSpawner : MonoBehaviour
 {
     public GameObject stripePrefab; // Префаб полоски с надписью
     public Canvas canvas;           // Ваш Canvas для UI объектов
-    public int mass = 1;
+    private PlayerManager playerManager;
 
-    private float spawnInterval = 6f;
-    private float moveDuration = 10f;
+    public int subtractorValue = 0;
+
+    private float spawnInterval = 18f;
+    private float moveDuration = 15f;
     public float animationDuration = 4f; // Длительность анимации
     private List<GameObject> spawnedStripes = new List<GameObject>();
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnStripes), 8f, spawnInterval);
+        playerManager = FindObjectOfType<PlayerManager>();
+        InvokeRepeating(nameof(SpawnStripes), 18f, spawnInterval);
     }
 
     void SpawnStripes()
@@ -43,15 +47,15 @@ public class SubtractorSpawner : MonoBehaviour
         rt.sizeDelta = new Vector2(width, height);
         rt.anchoredPosition = new Vector2(centerPos.x, centerPos.y - canvas.pixelRect.height / 2);
 
-        int value = GetRandomValue();
-        mass += 10;
+        int value = GetValue();
+        subtractorValue = value;
 
         var spawnedObject = stripe.GetComponent<SpawnedObject>();
-        spawnedObject.value = value;
+        spawnedObject.Value = value;
         spawnedObject.ExpressionType = ExpressionTypes.Subtraction;
 
         var label = stripe.GetComponentInChildren<TMP_Text>();
-            label.text = $"- {value}";
+        label.text = $"- {value}";
 
         // Запуск движения вниз
         stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
@@ -98,9 +102,14 @@ public class SubtractorSpawner : MonoBehaviour
         spawnedStripes.Clear();
     }
 
-    private int GetRandomValue()
+    private int GetValue()
     {
-        int a = Random.Range(1, 10);
-        return a * 10 + mass + Random.Range(1, 10);
+        int a = Random.Range(2, playerManager.mass % 2);
+        var resultValue = HistoryManager.Instance.GetAddPossibleMass() - a;
+
+        HistoryManager.Instance.AddHistory(new SpawnedObject(resultValue, ExpressionTypes.Subtraction));
+        HistoryManager.Instance.PossibleMassSubtraction(resultValue);
+
+        return resultValue;
     }
 }

@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     public bool isPortrait = Screen.width <= Screen.height;
     private bool isMoving = false;
     public float moveDuration; //0.3f; // Время на весь переход
-    public int mass = 1; // Начальная масса игрока
+    public int mass = 3; // Начальная масса игрока
 
     private GameObject gameOverObj;
 
@@ -18,15 +18,15 @@ public class PlayerManager : MonoBehaviour
     {
         if (spawnedObject.ExpressionType == ExpressionTypes.Addition)
         {
-            mass += spawnedObject.value;
+            mass += spawnedObject.Value;
         }
         if (spawnedObject.ExpressionType == ExpressionTypes.Multiplication)
         {
-            mass *= spawnedObject.value;
+            mass *= spawnedObject.Value;
         }
         if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
         {
-            mass -= spawnedObject.value;
+            mass -= spawnedObject.Value;
         }
 
         transform.GetComponent<PlayerScaleAndColor>().PlayAnimation(spawnedObject.ExpressionType);
@@ -45,6 +45,7 @@ public class PlayerManager : MonoBehaviour
         var canvas = GetComponentInParent<Canvas>();
         gameOverObj = GameObject.Find("GameOver");
         gameOverObj.SetActive(false);
+        transform.Find("PlayerMass").GetComponent<TMP_Text>().text = mass.ToString();
     }
 
     public void SetDefaultPosition()

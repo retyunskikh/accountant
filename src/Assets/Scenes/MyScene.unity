@@ -1068,7 +1068,7 @@ MonoBehaviour:
   verticalPos: -4
   isPortrait: 0
   moveDuration: 0.5
-  mass: 1
+  mass: 3
 --- !u!50 &1395180325
 Rigidbody2D:
   serializedVersion: 4
@@ -1380,7 +1380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4f75a5ef3c8ec40ae9127397d9b8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neonMaterial: {fileID: 2100000, guid: 5e2ec66fede3b0240a8451174103360c, type: 2}
 --- !u!1 &1596170351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,7 +1540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

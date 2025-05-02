@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class Collision : MonoBehaviour
 {
     public GameObject gameObject;
+    private SubtractorSpawner subtractorSpawner;
+
+    void Start()
+    {
+        subtractorSpawner = FindObjectOfType<SubtractorSpawner>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,6 +28,7 @@ public class Collision : MonoBehaviour
                     var audioSource = other.GetComponents<AudioSource>()[1];
                     audioSource.time = 0.5f;
                     audioSource.Play();
+                    subtractorSpawner.subtractorValue = 0;
                 }
                 else
                 {
