@@ -37,7 +37,7 @@ public class GameOver : MonoBehaviour
             HistoryManager.Instance.Clear();
             positiveSpawner.CancelInvokes();
             subtractorSpawner.CancelInvokes();
-            GlobalVariables.Instance.speedScale = 1f;
+            GlobalVariables.Instance.speedScale = GlobalVariables.speedDefault;
             return true;
         }
         return false;

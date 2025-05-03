@@ -8,6 +8,7 @@ public class Collision : MonoBehaviour
     public GameObject gameObject;
     private SubtractorSpawner subtractorSpawner;
     private PositiveSpawner positiveSpawner;
+    private GameObject speedUp;
 
     void Start()
     {
@@ -62,6 +63,10 @@ public class Collision : MonoBehaviour
                     GlobalVariables.Instance.AddSpeedScale(0.2f);
                     subtractorSpawner.Acceleration();
                     positiveSpawner.Acceleration();
+
+                    speedUp = GameObject.Find("SpeedUp");
+                    var SpeedUpComponent = speedUp.GetComponent<SpeedUp>();
+                    SpeedUpComponent.ShowSpeedUp();
                 }
             }
         }

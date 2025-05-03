@@ -26,7 +26,7 @@ public class SubtractorSpawner : MonoBehaviour
         moveDuration = moveDurationDefault / GlobalVariables.Instance.speedScale;
 
         playerManager = FindObjectOfType<PlayerManager>();
-        InvokeRepeating(nameof(SpawnStripes), 18f, spawnInterval);
+        InvokeRepeating(nameof(SpawnStripes), spawnInterval, spawnInterval);
     }
 
     void SpawnStripes()

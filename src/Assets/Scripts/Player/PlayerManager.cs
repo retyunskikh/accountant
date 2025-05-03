@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 120;
         var rectTransform = GetComponent<RectTransform>();
         var canvas = GetComponentInParent<Canvas>();
         gameOverObj = GameObject.Find("GameOver");
