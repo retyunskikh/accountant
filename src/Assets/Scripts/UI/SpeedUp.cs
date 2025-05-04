@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class SpeedUp : MonoBehaviour
 {
-    private float duration = 0.5f;
-    private float maxOpacity = 0.5f;
+    private float duration = 1.5f;
+    private float maxOpacity = 0.8f;
     public GameObject speedUp;
 
     public void ShowSpeedUp()
@@ -17,8 +17,10 @@ public class SpeedUp : MonoBehaviour
 
     private IEnumerator FadeInAndOut()
     {
+        yield return new WaitForSeconds(2 / GlobalVariables.Instance.speedScale);
+
         TMP_Text text = speedUp.GetComponentInChildren<TMP_Text>();
-        text.text = Math.Round((GlobalVariables.Instance.speedScale - 1)*10, 0).ToString();
+        text.text = $"{GlobalVariables.Instance.currentLevel.ToString()}";
 
         Image img = speedUp.GetComponent<Image>();
         // Fade In

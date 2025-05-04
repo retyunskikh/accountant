@@ -1,7 +1,9 @@
 public class GlobalVariables
 {
-    public static float speedDefault = 1;
+    public static float speedDefault = 1.5f;
     public float speedScale;
+
+    public float currentLevel = 1;
 
     private static GlobalVariables _instance;
     public static GlobalVariables Instance

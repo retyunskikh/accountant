@@ -4,12 +4,13 @@ using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Хранение всех предыдущих мультипликаторов
+/// Хранение всех предыдущих объектов на увеличесние и уменьшение массы
 /// </summary>
 public class HistoryManager : MonoBehaviour
 {
-    private List<SpawnedDataModel> spawnedObjects = new List<SpawnedDataModel>();
+    private List<PairDataModel> spawnedPairs = new List<PairDataModel>();
     private int possiblePlayerMass = PlayerStartMass.Value;
+
 
     private static HistoryManager _instance;
     public static HistoryManager Instance
@@ -26,18 +27,24 @@ public class HistoryManager : MonoBehaviour
         }
     }
 
-    public void HistoryAdd(SpawnedDataModel obj)
+    public void HistoryAdd(PairDataModel obj)
     {
-        spawnedObjects.Add(obj);
+        spawnedPairs.Add(obj);
     }
 
     public SpawnedDataModel HistoryLastGet()
     {
-        if(spawnedObjects.Count>0)
+        if (spawnedPairs.Count > 0)
         {
-            return spawnedObjects.Last();
+            return spawnedPairs.Last().SpawnedObjects.Last();
         }
         return null;
+    }
+
+    public int GetSubstructorCount()
+    {
+        var result = spawnedPairs.Where(x=>x.ExpressionType == ExpressionTypes.SubtractionAndDivision).Count();
+        return result;
     }
 
     public void PossibleMassAdd(List<SpawnedDataModel> objs)
@@ -67,7 +74,7 @@ public class HistoryManager : MonoBehaviour
 
     public void Clear()
     {
-        spawnedObjects = new List<SpawnedDataModel>();
+        spawnedPairs = new List<PairDataModel>();
         possiblePlayerMass = PlayerStartMass.Value;
     }
 }

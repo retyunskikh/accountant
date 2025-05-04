@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "C:\\Projects\\accountant\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\assets\\scripts\\ui\\speedup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\speedup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\assets\\scripts\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\collision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,12 +11,24 @@
       "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\orientationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\player\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\assets\\scripts\\spawners\\subtractorspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawners\\subtractorspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\spawners\\subtractorspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawners\\subtractorspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\assets\\scripts\\spawners\\positivespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawners\\positivespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|c:\\projects\\accountant\\src\\assets\\scripts\\spawners\\historymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawners\\historymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\spawners\\moveanddestroy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawners\\moveanddestroy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\player\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\ui\\cameraresizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,14 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\player\\playerscaleandcolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerscaleandcolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\spawners\\moveanddestroy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawners\\moveanddestroy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|C:\\Projects\\accountant\\src\\assets\\scripts\\model\\positivedatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\model\\positivedatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,37 +50,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "PositiveSpawner.cs",
+              "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Spawners\\PositiveSpawner.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T18:32:35.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HistoryManager.cs",
+              "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\HistoryManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Spawners\\HistoryManager.cs",
+              "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\HistoryManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Spawners\\HistoryManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T18:32:34.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SubtractorSpawner.cs",
+              "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
+              "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwCIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T18:30:43.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Collision.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Collision.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Collision.cs",
               "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Collision.cs",
               "RelativeToolTip": "Assets\\Scripts\\Collision.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowEcAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T11:51:10.54Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SpeedUp.cs",
-              "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\UI\\SpeedUp.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\SpeedUp.cs",
-              "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\UI\\SpeedUp.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UI\\SpeedUp.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBYAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T11:39:33.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Player\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerManager.cs",
@@ -88,12 +114,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerManager.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAArwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T06:19:04.94Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T06:19:04.94Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CameraResizer.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\UI\\CameraResizer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\CameraResizer.cs",
@@ -105,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "PositiveObject.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Model\\PositiveObject.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Model\\PositiveObject.cs",
@@ -117,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "MoveAndDestroy.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\MoveAndDestroy.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Spawners\\MoveAndDestroy.cs",
@@ -129,20 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SubtractorSpawner.cs",
-              "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
-              "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Spawners\\SubtractorSpawner.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCIAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T15:40:31.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "OrientationManager.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\UI\\OrientationManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\OrientationManager.cs",
@@ -155,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "PlayerScaleAndColor.cs",
               "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Player\\PlayerScaleAndColor.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerScaleAndColor.cs",
@@ -164,18 +176,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T13:39:17.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PositiveDataModel.cs",
-              "DocumentMoniker": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Model\\PositiveDataModel.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Model\\PositiveDataModel.cs",
-              "ToolTip": "C:\\Projects\\accountant\\src\\Assets\\Scripts\\Model\\PositiveDataModel.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Model\\PositiveDataModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T12:36:33.848Z"
             }
           ]
         }

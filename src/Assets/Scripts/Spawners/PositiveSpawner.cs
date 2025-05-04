@@ -18,7 +18,9 @@ public class PositiveSpawner : MonoBehaviour
     private float moveDuration = 0;
     public float animationDuration = 4f; // Длительность анимации
 
-    int count = 0;
+    int spawnerNumber = 1;
+    int spawnerShift = 0;
+
     int multiplicationMaxValue = 2;
     public int lastMultiplicationValue = 1;
 
@@ -35,42 +37,49 @@ public class PositiveSpawner : MonoBehaviour
 
     void SpawnStripes()
     {
-        count++;
-        var t = count % 3;
-        if (count == 1 || count % 3 != 1)
+        if (spawnerNumber % 9 == 0) // Фиксируем каждый 9й
         {
-            float screenW = canvas.pixelRect.width;
-            float screenH = canvas.pixelRect.height;
-            float stripeWidth = screenW * 0.25f; // 25% ширины на каждую
-            float stripeHeight = 100f;
-
-            float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
-
-            var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
-
-            var multiplicationValue = Random.Range(2, multiplicationMaxValue + 1); // Случайный мультипликатор
-            if (multiplicationMaxValue < 10)
-            {
-                if (Random.Range(0, 10) < 1)
-                {
-                    multiplicationMaxValue++; // Постепенно повышаем верхнюю границу случайного мультипликатора
-                }
-            }
-
-            var spawnedObjects = new List<SpawnedDataModel>();
-
-            // Левая половина
-            Vector2 leftPos = new Vector2(screenW * 0.25f, y);
-            spawnedObjects.Add(CreateStripe(new PositiveDataModel(leftPos, stripeWidth, stripeHeight, ExpressionTypes.Addition, pairId, multiplicationValue)));
-
-            // Правая половина
-            Vector2 rightPos = new Vector2(screenW * 0.75f, y);
-            spawnedObjects.Add(CreateStripe(new PositiveDataModel(rightPos, stripeWidth, stripeHeight, ExpressionTypes.Multiplication, pairId, multiplicationValue)));
-
-            HistoryManager.Instance.PossibleMassAdd(spawnedObjects);
-
-            lastMultiplicationValue = multiplicationValue;
+            spawnerShift++;
         }
+        else
+        {
+            if ((spawnerNumber + spawnerShift) % 4 != 0) // Пропускаем каждый 4й
+            {
+                float screenW = canvas.pixelRect.width;
+                float screenH = canvas.pixelRect.height;
+                float stripeWidth = screenW * 0.25f; // 25% ширины на каждую
+                float stripeHeight = 100f;
+
+                float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
+
+                var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
+
+                var multiplicationValue = Random.Range(2, multiplicationMaxValue + 1); // Случайный мультипликатор
+                if (multiplicationMaxValue < 10)
+                {
+                    if (Random.Range(0, 10) < 1)
+                    {
+                        multiplicationMaxValue++; // Постепенно повышаем верхнюю границу случайного мультипликатора
+                    }
+                }
+
+                var spawnedObjects = new List<SpawnedDataModel>();
+
+                // Левая половина
+                Vector2 leftPos = new Vector2(screenW * 0.25f, y);
+                spawnedObjects.Add(CreateStripe(new PositiveDataModel(leftPos, stripeWidth, stripeHeight, ExpressionTypes.Addition, pairId, multiplicationValue)));
+
+                // Правая половина
+                Vector2 rightPos = new Vector2(screenW * 0.75f, y);
+                spawnedObjects.Add(CreateStripe(new PositiveDataModel(rightPos, stripeWidth, stripeHeight, ExpressionTypes.Multiplication, pairId, multiplicationValue)));
+
+                HistoryManager.Instance.HistoryAdd(new PairDataModel(ExpressionTypes.AdditionAndMultiplication, spawnedObjects));
+                HistoryManager.Instance.PossibleMassAdd(spawnedObjects);
+
+                lastMultiplicationValue = multiplicationValue;
+            }
+        }
+        spawnerNumber++;
     }
 
     SpawnedDataModel CreateStripe(PositiveDataModel model)
@@ -92,7 +101,6 @@ public class PositiveSpawner : MonoBehaviour
             spawnedObject.Value = model.MultiplicationValue;
             label.text = $"X {model.MultiplicationValue}";
 
-            HistoryManager.Instance.HistoryAdd(new SpawnedDataModel(model.MultiplicationValue, ExpressionTypes.Multiplication));
         }
         else
         {
@@ -123,8 +131,6 @@ public class PositiveSpawner : MonoBehaviour
             }
             spawnedObject.Value = additionValue;
             label.text = $"+ {additionValue}";
-
-            HistoryManager.Instance.HistoryAdd(new SpawnedDataModel(additionValue, ExpressionTypes.Addition));
         }
 
         // Запуск движения вниз

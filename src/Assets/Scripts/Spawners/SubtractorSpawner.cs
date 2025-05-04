@@ -12,11 +12,14 @@ public class SubtractorSpawner : MonoBehaviour
 
     public int subtractorValue = 0;
 
-    private float spawnIntervalDefault = 18f;
+    private float spawnIntervalDefault = 6;
     private float moveDurationDefault = 15f;
     private float spawnInterval;
     private float moveDuration;
     public float animationDuration = 4f; // Длительность анимации
+
+    int spawnerNumber = 1;
+    int spawnerShift = 0;
 
     private List<GameObject> spawnedStripes = new List<GameObject>();
 
@@ -26,20 +29,32 @@ public class SubtractorSpawner : MonoBehaviour
         moveDuration = moveDurationDefault / GlobalVariables.Instance.speedScale;
 
         playerManager = FindObjectOfType<PlayerManager>();
-        InvokeRepeating(nameof(SpawnStripes), spawnInterval, spawnInterval);
+        InvokeRepeating(nameof(SpawnStripes), 0f, spawnInterval);
     }
 
     void SpawnStripes()
     {
-        float screenW = canvas.pixelRect.width;
-        float screenH = canvas.pixelRect.height;
-        float stripeHeight = 100f;
+        if (spawnerNumber % 9 == 0) // Фиксируем каждый 9й
+        {
+            spawnerShift++;
+        }
+        else
+        {
+            if ((spawnerNumber + spawnerShift) % 4 == 0) // Фиксируем каждый 4й
+            {
 
-        float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
+                float screenW = canvas.pixelRect.width;
+                float screenH = canvas.pixelRect.height;
+                float stripeHeight = 100f;
 
-        // Левая половина
-        var leftPos = new Vector2(0, y);
-        CreateStripe(leftPos, screenW, stripeHeight);
+                float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
+
+                // Левая половина
+                var leftPos = new Vector2(0, y);
+                CreateStripe(leftPos, screenW, stripeHeight);
+            }
+        }
+        spawnerNumber++;
     }
 
     void CreateStripe(Vector2 centerPos, float width, float height)
@@ -113,11 +128,13 @@ public class SubtractorSpawner : MonoBehaviour
         int a = Random.Range(2, playerManager.mass % 2 + 1);
         var resultValue = HistoryManager.Instance.PossibleMassGet() - a;
 
-        HistoryManager.Instance.HistoryAdd(new SpawnedDataModel(resultValue, ExpressionTypes.Subtraction));
+        var spawnedDataModel = new SpawnedDataModel(resultValue, ExpressionTypes.Subtraction);
+        HistoryManager.Instance.HistoryAdd(new PairDataModel(ExpressionTypes.SubtractionAndDivision, new List<SpawnedDataModel> { spawnedDataModel }));
         HistoryManager.Instance.PossibleMassSubtraction(resultValue);
 
         return resultValue;
     }
+
     public void Acceleration()
     {
         spawnInterval = spawnIntervalDefault / GlobalVariables.Instance.speedScale;

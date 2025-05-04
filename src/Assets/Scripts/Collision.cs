@@ -32,6 +32,7 @@ public class Collision : MonoBehaviour
                     audioSource.time = 0.5f;
                     audioSource.Play();
                     subtractorSpawner.subtractorValue = 0;
+                    Acceleration(spawnedObject);
                 }
                 else
                 {
@@ -56,18 +57,26 @@ public class Collision : MonoBehaviour
                 }
 
                 CoroutineManager.Instance.StartManagedCoroutine(FadeToTransparent(spawnedObject.gameObject));
+            }
+        }
+    }
 
+    private void Acceleration(SpawnedObject spawnedObject)
+    {
+        if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
+        {
+            var substructorNumber = HistoryManager.Instance.GetSubstructorCount();
+            if (substructorNumber % 2 == 0)
+            {
+                GlobalVariables.Instance.currentLevel++;
 
-                if (spawnedObject.ExpressionType == ExpressionTypes.Subtraction)
-                {
-                    GlobalVariables.Instance.AddSpeedScale(0.2f);
-                    subtractorSpawner.Acceleration();
-                    positiveSpawner.Acceleration();
+                GlobalVariables.Instance.AddSpeedScale(0.2f);
+                subtractorSpawner.Acceleration();
+                positiveSpawner.Acceleration();
 
-                    speedUp = GameObject.Find("SpeedUp");
-                    var SpeedUpComponent = speedUp.GetComponent<SpeedUp>();
-                    SpeedUpComponent.ShowSpeedUp();
-                }
+                speedUp = GameObject.Find("SpeedUp");
+                var SpeedUpComponent = speedUp.GetComponent<SpeedUp>();
+                SpeedUpComponent.ShowSpeedUp();
             }
         }
     }
