@@ -9,7 +9,7 @@ using UnityEngine;
 public class HistoryManager : MonoBehaviour
 {
     private List<PairDataModel> spawnedPairs = new List<PairDataModel>();
-    private int possiblePlayerMass = PlayerStartMass.Value;
+    private float possiblePlayerMass = PlayerStartMass.Value;
 
 
     private static HistoryManager _instance;
@@ -32,7 +32,7 @@ public class HistoryManager : MonoBehaviour
         spawnedPairs.Add(obj);
     }
 
-    public SpawnedDataModel HistoryLastGet()
+    public SpawnedShortDataModel HistoryLastGet()
     {
         if (spawnedPairs.Count > 0)
         {
@@ -47,27 +47,30 @@ public class HistoryManager : MonoBehaviour
         return result;
     }
 
-    public void PossibleMassAdd(List<SpawnedDataModel> objs)
+    public void PossibleMassAdd(List<SpawnedShortDataModel> objs)
     {
-        var valueAfterAdd = objs.Where(x => x.ExpressionType == ExpressionTypes.Addition).Single().Value + possiblePlayerMass;
-        var valueAfterMultiplication = objs.Where(x => x.ExpressionType == ExpressionTypes.Multiplication).Single().Value * possiblePlayerMass;
+        if (objs.Any(x => x.ExpressionType == ExpressionTypes.Addition))
+        {
+            var valueAfterAdd = objs.Where(x => x.ExpressionType == ExpressionTypes.Addition).Single().Value + possiblePlayerMass;
+            var valueAfterMultiplication = objs.Where(x => x.ExpressionType == ExpressionTypes.Multiplication).Single().Value * possiblePlayerMass;
 
-        if(valueAfterAdd> valueAfterMultiplication)
-        {
-            possiblePlayerMass = valueAfterAdd;
-        }
-        else
-        {
-            possiblePlayerMass = valueAfterMultiplication;
+            if (valueAfterAdd > valueAfterMultiplication)
+            {
+                possiblePlayerMass = valueAfterAdd;
+            }
+            else
+            {
+                possiblePlayerMass = valueAfterMultiplication;
+            }
         }
     }
 
-    public void PossibleMassSubtraction(int value)
+    public void PossibleMassSubtraction(float value)
     {
         possiblePlayerMass -= value;
     }
 
-    public int PossibleMassGet()
+    public float PossibleMassGet()
     {
         return possiblePlayerMass;
     }

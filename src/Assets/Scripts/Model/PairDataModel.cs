@@ -4,9 +4,9 @@ public class PairDataModel
 {
     public ExpressionTypes ExpressionType;
 
-    public List<SpawnedDataModel> SpawnedObjects {  get; set; }
+    public List<SpawnedShortDataModel> SpawnedObjects {  get; set; }
 
-    public PairDataModel(ExpressionTypes expressionType, List<SpawnedDataModel> spawnedObjects)
+    public PairDataModel(ExpressionTypes expressionType, List<SpawnedShortDataModel> spawnedObjects)
     {
         ExpressionType = expressionType;
         SpawnedObjects = spawnedObjects;

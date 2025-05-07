@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PositiveDataModel
+public class SpawnedDetailDataModel
 {
     public Guid Id { get; set; }
 
@@ -14,10 +14,10 @@ public class PositiveDataModel
     public float Width;
     public float Height;
     public ExpressionTypes ExpressionType;
-    public int MultiplicationValue;
+    public float MultiplicationValue;
 
 
-    public PositiveDataModel(Vector2 centerPos, float width, float height, ExpressionTypes expressionType, Guid pairId, int multiplicationValue)
+    public SpawnedDetailDataModel(Vector2 centerPos, float width, float height, ExpressionTypes expressionType, Guid pairId, float multiplicationValue)
     {
         CenterPos = centerPos;
         Width = width;

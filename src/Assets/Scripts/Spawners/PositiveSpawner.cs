@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class PositiveSpawner : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PositiveSpawner : MonoBehaviour
     int spawnerShift = 0;
 
     int multiplicationMaxValue = 2;
-    public int lastMultiplicationValue = 1;
+    public float lastMultiplicationValue = 1;
 
     void Start()
     {
@@ -49,29 +50,27 @@ public class PositiveSpawner : MonoBehaviour
                 float screenH = canvas.pixelRect.height;
                 float stripeWidth = screenW * 0.25f; // 25% ширины на каждую
                 float stripeHeight = 100f;
-
                 float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
-
                 var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
 
-                var multiplicationValue = Random.Range(2, multiplicationMaxValue + 1); // Случайный мультипликатор
+                var multiplicationValue = 1 + (float)UnityEngine.Random.Range(1, multiplicationMaxValue + 1)/10; // Случайный мультипликатор
                 if (multiplicationMaxValue < 10)
                 {
-                    if (Random.Range(0, 10) < 1)
+                    if (UnityEngine.Random.Range(0, 10) < 1)
                     {
                         multiplicationMaxValue++; // Постепенно повышаем верхнюю границу случайного мультипликатора
                     }
                 }
 
-                var spawnedObjects = new List<SpawnedDataModel>();
+                var spawnedObjects = new List<SpawnedShortDataModel>();
 
                 // Левая половина
                 Vector2 leftPos = new Vector2(screenW * 0.25f, y);
-                spawnedObjects.Add(CreateStripe(new PositiveDataModel(leftPos, stripeWidth, stripeHeight, ExpressionTypes.Addition, pairId, multiplicationValue)));
+                spawnedObjects.Add(CreateStripe(new SpawnedDetailDataModel(leftPos, stripeWidth, stripeHeight, ExpressionTypes.Addition, pairId, multiplicationValue)));
 
                 // Правая половина
                 Vector2 rightPos = new Vector2(screenW * 0.75f, y);
-                spawnedObjects.Add(CreateStripe(new PositiveDataModel(rightPos, stripeWidth, stripeHeight, ExpressionTypes.Multiplication, pairId, multiplicationValue)));
+                spawnedObjects.Add(CreateStripe(new SpawnedDetailDataModel(rightPos, stripeWidth, stripeHeight, ExpressionTypes.Multiplication, pairId, multiplicationValue)));
 
                 HistoryManager.Instance.HistoryAdd(new PairDataModel(ExpressionTypes.AdditionAndMultiplication, spawnedObjects));
                 HistoryManager.Instance.PossibleMassAdd(spawnedObjects);
@@ -82,7 +81,7 @@ public class PositiveSpawner : MonoBehaviour
         spawnerNumber++;
     }
 
-    SpawnedDataModel CreateStripe(PositiveDataModel model)
+    SpawnedShortDataModel CreateStripe(SpawnedDetailDataModel model)
     {
         GameObject stripe = Instantiate(stripePrefab, canvas.transform);
         spawnedStripes.Add(stripe);
@@ -98,9 +97,8 @@ public class PositiveSpawner : MonoBehaviour
         var label = stripe.GetComponentInChildren<TMP_Text>();
         if (model.ExpressionType == ExpressionTypes.Multiplication)
         {
-            spawnedObject.Value = model.MultiplicationValue;
+            spawnedObject.Value = (float)Math.Round(model.MultiplicationValue,1);
             label.text = $"X {model.MultiplicationValue}";
-
         }
         else
         {
@@ -117,9 +115,9 @@ public class PositiveSpawner : MonoBehaviour
             }
 
             var growth = massAfterCollision * lastMultiplicationValue - massAfterCollision;
-            var randomChange = Random.Range(1, multiplicationMaxValue+1);
-            var additionValue = 0;
-            var rand = Random.Range(1, 3);
+            var randomChange = UnityEngine.Random.Range(1, multiplicationMaxValue+1);
+            float additionValue = 0;
+            var rand = UnityEngine.Random.Range(1, 3);
             if (rand == 1)
             {
                 additionValue = growth - randomChange;
@@ -140,7 +138,7 @@ public class PositiveSpawner : MonoBehaviour
         positiveProperties.Id = System.Guid.NewGuid();
 
         CoroutineManager.Instance.StartManagedCoroutine(SmoothRendering(spawnedObject));
-        return new SpawnedDataModel(spawnedObject.Value, model.ExpressionType);
+        return new SpawnedShortDataModel(spawnedObject.Value, model.ExpressionType);
     }
 
     IEnumerator SmoothRendering(SpawnedObject spawnedObject)

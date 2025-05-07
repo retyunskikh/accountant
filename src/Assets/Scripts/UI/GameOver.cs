@@ -19,7 +19,7 @@ public class GameOver : MonoBehaviour
         subtractorSpawner = FindObjectOfType<SubtractorSpawner>();
     }
 
-    public bool Check(int userMass)
+    public bool Check(float userMass)
     {
         if (userMass < 0)
         {

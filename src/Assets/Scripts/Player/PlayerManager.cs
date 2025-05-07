@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     public bool isPortrait = Screen.width <= Screen.height;
     private bool isMoving = false;
     private float moveDuration = 0.3f; // Время на весь переход
-    public int mass = PlayerStartMass.Value; // Начальная масса игрока
+    public float mass = PlayerStartMass.Value; // Начальная масса игрока
 
     public SpriteRenderer spriteRenderer;
     private Color ghostColor = new Color(100f/255, 100f/255, 100f/255, 0.5f); // полупрозрачный
@@ -32,6 +33,8 @@ public class PlayerManager : MonoBehaviour
         {
             mass -= spawnedObject.Value;
         }
+
+        mass = (float)Math.Round(mass, 1);
 
         transform.GetComponent<PlayerScaleAndColor>().PlayAnimation(spawnedObject.ExpressionType);
 

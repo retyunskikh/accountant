@@ -1,11 +1,10 @@
-using UnityEngine;
-public class SpawnedObject : MonoBehaviour
+public class SpawnedShortDataModel
 {
     public float Value;
 
     public ExpressionTypes ExpressionType;
 
-    public SpawnedObject(float value, ExpressionTypes expressionType)
+    public SpawnedShortDataModel(float value, ExpressionTypes expressionType)
     {
         Value = value;
         ExpressionType = expressionType;

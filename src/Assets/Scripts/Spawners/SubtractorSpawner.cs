@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class SubtractorSpawner : MonoBehaviour
 {
@@ -45,42 +46,62 @@ public class SubtractorSpawner : MonoBehaviour
 
                 float screenW = canvas.pixelRect.width;
                 float screenH = canvas.pixelRect.height;
+                float stripeWidth = screenW * 0.25f; // 25% ширины на каждую
                 float stripeHeight = 100f;
-
                 float y = screenH - stripeHeight * 2; // Чуть ниже верхней границы
+                var pairId = System.Guid.NewGuid(); // Уникальный идентификатор для пары
+
+                var spawnedObjects = new List<SpawnedShortDataModel>();
+
+                var multiplicationValue = GetValue();
 
                 // Левая половина
-                var leftPos = new Vector2(0, y);
-                CreateStripe(leftPos, screenW, stripeHeight);
+                Vector2 leftPos = new Vector2(screenW * 0.25f, y);
+                spawnedObjects.Add(CreateStripe(new SpawnedDetailDataModel(leftPos, stripeWidth, stripeHeight, ExpressionTypes.Subtraction, pairId, multiplicationValue)));
+
+                // Правая половина
+                Vector2 rightPos = new Vector2(screenW * 0.75f, y);
+                spawnedObjects.Add(CreateStripe(new SpawnedDetailDataModel(rightPos, stripeWidth, stripeHeight, ExpressionTypes.Division, pairId, multiplicationValue)));
+
+                HistoryManager.Instance.HistoryAdd(new PairDataModel(ExpressionTypes.AdditionAndMultiplication, spawnedObjects));
+                HistoryManager.Instance.PossibleMassAdd(spawnedObjects);
             }
         }
         spawnerNumber++;
     }
 
-    void CreateStripe(Vector2 centerPos, float width, float height)
+    SpawnedShortDataModel CreateStripe(SpawnedDetailDataModel model)
     {
-        var stripe = Instantiate(stripePrefab, canvas.transform);
+        GameObject stripe = Instantiate(stripePrefab, canvas.transform);
         spawnedStripes.Add(stripe);
 
         // RectTransform для позиционирования
         var rt = stripe.GetComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(width, height);
-        rt.anchoredPosition = new Vector2(centerPos.x, centerPos.y - canvas.pixelRect.height / 2);
-
-        int value = GetValue();
-        subtractorValue = value;
+        rt.sizeDelta = new Vector2(model.Width, model.Height);
+        rt.anchoredPosition = new Vector2(model.CenterPos.x - canvas.pixelRect.width / 2, model.CenterPos.y - canvas.pixelRect.height / 2);
 
         var spawnedObject = stripe.GetComponent<SpawnedObject>();
-        spawnedObject.Value = value;
-        spawnedObject.ExpressionType = ExpressionTypes.Subtraction;
+        spawnedObject.ExpressionType = model.ExpressionType;
 
         var label = stripe.GetComponentInChildren<TMP_Text>();
-        label.text = $"- {value}";
+        if (model.ExpressionType == ExpressionTypes.Division)
+        {
+            spawnedObject.Value = (float)Math.Round(model.MultiplicationValue,1);
+            label.text = $"/ {spawnedObject.Value}";
+        }
+        else
+        {
+
+        }
 
         // Запуск движения вниз
-        stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - height);
+        stripe.AddComponent<MoveAndDestroy>().Init(moveDuration, -canvas.pixelRect.height - model.Height);
+        var positiveProperties = stripe.AddComponent<PositiveObject>();
+        positiveProperties.PairId = model.PairId;
+        positiveProperties.Id = System.Guid.NewGuid();
 
         CoroutineManager.Instance.StartManagedCoroutine(SmoothRendering(stripe));
+        return new SpawnedShortDataModel(spawnedObject.Value, model.ExpressionType);
 
     }
 
@@ -123,13 +144,13 @@ public class SubtractorSpawner : MonoBehaviour
         spawnedStripes.Clear();
     }
 
-    private int GetValue()
+    private float GetValue()
     {
-        int a = Random.Range(2, playerManager.mass % 2 + 1);
+        float a = UnityEngine.Random.Range(2, playerManager.mass % 2 + 1);
         var resultValue = HistoryManager.Instance.PossibleMassGet() - a;
 
-        var spawnedDataModel = new SpawnedDataModel(resultValue, ExpressionTypes.Subtraction);
-        HistoryManager.Instance.HistoryAdd(new PairDataModel(ExpressionTypes.SubtractionAndDivision, new List<SpawnedDataModel> { spawnedDataModel }));
+        var spawnedDataModel = new SpawnedShortDataModel(resultValue, ExpressionTypes.Subtraction);
+        HistoryManager.Instance.HistoryAdd(new PairDataModel(ExpressionTypes.SubtractionAndDivision, new List<SpawnedShortDataModel> { spawnedDataModel }));
         HistoryManager.Instance.PossibleMassSubtraction(resultValue);
 
         return resultValue;
